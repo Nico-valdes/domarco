@@ -10,7 +10,7 @@ const heroServices = [services[0], services[1], services[3]]
 export function DomarcoHero({ onSelectService }: DomarcoHeroProps) {
   return (
     <section id="inicio" className="hero-cards">
-      <div className="mx-auto max-w-[1480px] px-6 py-16 lg:px-12 lg:py-24">
+      <div className="mx-auto max-w-[1480px] px-4 py-4 sm:px-6 sm:py-16 lg:px-12 lg:py-24">
         <div className="hero-cards-heading">
           <div className="hero-heading-copy">
             <div className="hero-brand-line">
@@ -24,7 +24,6 @@ export function DomarcoHero({ onSelectService }: DomarcoHeroProps) {
             </h1>
             <p className="hero-description">Fabricación a medida, reacondicionamiento y servicio técnico para resolver tus necesidades de producción con respaldo especializado.</p>
           </div>
-          <p className="hero-cards-note">Fabricación · Reacondicionamiento · Servicio técnico</p>
         </div>
         <div className="hero-card-grid">
           {heroServices.map((service, index) => (
