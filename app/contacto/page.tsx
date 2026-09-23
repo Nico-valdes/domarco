@@ -1,8 +1,49 @@
 'use client'
 
 import { FormEvent, useState } from 'react'
-import { ArrowUpRight, MessageCircle } from 'lucide-react'
+import { ArrowUpRight, MessageCircle, Phone, Mail, MapPin, CheckCircle2 } from 'lucide-react'
 import { DomarcoSubpage } from '@/components/domarco-subpage'
+
+function InstagramIcon({ className = 'size-3.5' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  )
+}
+
+const contactChannels = [
+  {
+    icon: MessageCircle,
+    label: 'WhatsApp',
+    subtext: '+54 9 11 3691-2384',
+    href: 'https://wa.me/5491136912384',
+    external: true,
+  },
+  {
+    icon: Phone,
+    label: 'Llamar',
+    subtext: '011 3691-2384',
+    href: 'tel:+5491136912384',
+    external: false,
+  },
+  {
+    icon: Mail,
+    label: 'Email',
+    subtext: 'info@domarco.com.ar',
+    href: 'mailto:info@domarco.com.ar',
+    external: false,
+  },
+  {
+    icon: MapPin,
+    label: 'Taller',
+    subtext: 'Quilmes, Bs. As.',
+    href: 'https://maps.google.com/?q=Av.+Centenario+3615,+Quilmes,+Buenos+Aires',
+    external: true,
+  },
+]
 
 export default function ContactoPage() {
   const [sent, setSent] = useState(false)
@@ -20,25 +61,85 @@ export default function ContactoPage() {
       pageClassName="contact-subpage"
     >
       <section className="contact-page-section contact-page-redesign">
-        <div className="mx-auto grid max-w-[1480px] gap-10 px-6 py-20 lg:grid-cols-[.8fr_1.2fr] lg:px-12 lg:py-28">
+        <div className="mx-auto grid max-w-[1480px] gap-8 px-4 py-8 sm:px-6 sm:py-14 lg:grid-cols-[.85fr_1.15fr] lg:gap-14 lg:px-12 lg:py-24">
           <div className="contact-page-info">
             <p className="blue-kicker">Datos de contacto</p>
             <h2 className="section-title">Formas de<br /><span>contactarnos.</span></h2>
             <p>Podés enviarnos tu consulta por formulario, WhatsApp o correo electrónico. Te respondemos para entender la necesidad y definir el próximo paso.</p>
-            <div className="contact-details">
-              <a href="https://wa.me/5491136912384" target="_blank" rel="noreferrer"><MessageCircle className="size-4" /> WhatsApp</a>
-              <a href="mailto:info@domarco.com.ar">info@domarco.com.ar</a>
-              <a href="tel:+5491136912384">+54 9 11 3691-2384</a>
-              <span>Av. Centenario 3615 · Quilmes, Buenos Aires</span>
+
+            {/* Grilla de botones de contacto estéticos y minimalistas */}
+            <div className="contact-actions-grid" aria-label="Canales directos de contacto">
+              {contactChannels.map((channel) => {
+                const IconComponent = channel.icon
+                return (
+                  <a
+                    key={channel.label}
+                    href={channel.href}
+                    target={channel.external ? '_blank' : undefined}
+                    rel={channel.external ? 'noreferrer' : undefined}
+                    className="contact-action-btn"
+                  >
+                    <div className="contact-btn-top">
+                      <span className="contact-btn-icon">
+                        <IconComponent className="size-4" />
+                      </span>
+                      <ArrowUpRight className="contact-btn-arrow size-3.5" />
+                    </div>
+                    <div className="contact-btn-body">
+                      <span className="contact-btn-title">{channel.label}</span>
+                      <span className="contact-btn-sub">{channel.subtext}</span>
+                    </div>
+                  </a>
+                )
+              })}
             </div>
-            <div className="contact-socials"><a href="#formulario">Enviar consulta</a><a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a></div>
+
+            {/* Acciones auxiliares minimalistas */}
+            <div className="contact-aux-links">
+              <a href="#formulario" className="contact-aux-link">
+                Completar formulario ↓
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
+                className="contact-aux-link"
+              >
+                <InstagramIcon className="size-3.5" /> Instagram
+              </a>
+            </div>
           </div>
+
           <form id="formulario" className="contact-form" onSubmit={handleSubmit}>
             <p className="blue-kicker">Formulario de contacto</p>
-            <label>Nombre<input name="name" required placeholder="Tu nombre" /></label>
-            <label>Email<input type="email" name="email" required placeholder="tu@email.com" /></label>
-            <label>Consulta<textarea name="message" required rows={5} placeholder="¿Qué necesitás resolver?" /></label>
-            <button type="submit" className="blue-button">{sent ? 'Consulta preparada' : 'Enviar consulta'} <ArrowUpRight className="ml-2 size-4" /></button>
+            <label>
+              Nombre
+              <input name="name" required placeholder="Tu nombre o empresa" />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" required placeholder="tu@email.com" />
+            </label>
+            <label>
+              Consulta
+              <textarea name="message" required rows={3} placeholder="¿Qué prensas o trabajo necesitás cotizar?" />
+            </label>
+            <button type="submit" className="blue-button">
+              {sent ? (
+                <>
+                  <CheckCircle2 className="mr-2 size-4 text-emerald-300" /> Consulta registrada
+                </>
+              ) : (
+                <>
+                  Enviar consulta <ArrowUpRight className="ml-2 size-4" />
+                </>
+              )}
+            </button>
+            {sent && (
+              <p className="contact-form-success">
+                Gracias por contactarte. Te responderemos a la brevedad.
+              </p>
+            )}
           </form>
         </div>
       </section>

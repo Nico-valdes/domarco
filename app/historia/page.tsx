@@ -101,7 +101,7 @@ export default function HistoriaPage() {
     >
       {/* ─── Bloque de cifras y legado ─── */}
       <section className="history-stats-section" aria-label="Cifras de legado">
-        <div className="mx-auto max-w-[1480px] px-6 lg:px-12">
+        <div className="mx-auto max-w-[1480px] px-4 sm:px-6 lg:px-12">
           <div className="history-stats-grid">
             {legacyStats.map((stat) => (
               <div key={stat.label} className="history-stat-card">
