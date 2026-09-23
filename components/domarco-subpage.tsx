@@ -44,7 +44,7 @@ export function DomarcoSubpage({
     <main className={`domarco-subpage ${pageClassName}`}>
       <DomarcoSubpageHeader />
       <section className="subpage-hero">
-        <div className="mx-auto max-w-[1480px] px-6 py-24 lg:px-12 lg:py-36">
+        <div className="subpage-hero-inner mx-auto max-w-[1480px] px-6 lg:px-12">
           <p className="kicker">{eyebrow}</p>
           <h1 className="subpage-title">{title}<br /><span>{accent}</span></h1>
           <p className="subpage-intro">{intro}</p>
