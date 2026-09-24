@@ -1,7 +1,7 @@
 'use client'
 
 import { FormEvent, useState } from 'react'
-import { ArrowUpRight, MessageCircle, Phone, Mail, MapPin, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, MessageCircle, Mail, MapPin, CheckCircle2 } from 'lucide-react'
 import { DomarcoSubpage } from '@/components/domarco-subpage'
 
 function InstagramIcon({ className = 'size-3.5' }: { className?: string }) {
@@ -23,13 +23,6 @@ const contactChannels = [
     external: true,
   },
   {
-    icon: Phone,
-    label: 'Llamar',
-    subtext: '011 3691-2384',
-    href: 'tel:+5491136912384',
-    external: false,
-  },
-  {
     icon: Mail,
     label: 'Email',
     subtext: 'info@domarco.com.ar',
@@ -38,8 +31,8 @@ const contactChannels = [
   },
   {
     icon: MapPin,
-    label: 'Taller',
-    subtext: 'Quilmes, Bs. As.',
+    label: 'Ubicación',
+    subtext: 'Av. Centenario 3615, Quilmes',
     href: 'https://maps.google.com/?q=Av.+Centenario+3615,+Quilmes,+Buenos+Aires',
     external: true,
   },
@@ -67,8 +60,8 @@ export default function ContactoPage() {
             <h2 className="section-title">Formas de<br /><span>contactarnos.</span></h2>
             <p>Podés enviarnos tu consulta por formulario, WhatsApp o correo electrónico. Te respondemos para entender la necesidad y definir el próximo paso.</p>
 
-            {/* Grilla de botones de contacto estéticos y minimalistas */}
-            <div className="contact-actions-grid" aria-label="Canales directos de contacto">
+            {/* Botones de contacto horizontales, elegantes y minimalistas */}
+            <div className="contact-actions-list" aria-label="Canales directos de contacto">
               {contactChannels.map((channel) => {
                 const IconComponent = channel.icon
                 return (
@@ -77,17 +70,19 @@ export default function ContactoPage() {
                     href={channel.href}
                     target={channel.external ? '_blank' : undefined}
                     rel={channel.external ? 'noreferrer' : undefined}
-                    className="contact-action-btn"
+                    className="contact-action-row"
                   >
-                    <div className="contact-btn-top">
-                      <span className="contact-btn-icon">
+                    <div className="contact-row-main">
+                      <span className="contact-row-icon">
                         <IconComponent className="size-4" />
                       </span>
-                      <ArrowUpRight className="contact-btn-arrow size-3.5" />
+                      <div className="contact-row-copy">
+                        <span className="contact-row-label">{channel.label}</span>
+                        <span className="contact-row-subtext">{channel.subtext}</span>
+                      </div>
                     </div>
-                    <div className="contact-btn-body">
-                      <span className="contact-btn-title">{channel.label}</span>
-                      <span className="contact-btn-sub">{channel.subtext}</span>
+                    <div className="contact-row-arrow-box">
+                      <ArrowRight className="contact-row-arrow size-4" />
                     </div>
                   </a>
                 )
