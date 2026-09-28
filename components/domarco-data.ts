@@ -9,14 +9,56 @@ export const serviceLayouts: Record<string, string> = {
   '06': 'layout-wide-detail',
 }
 
+export const servicePhotos = {
+  fabricacion: {
+    columna: '/images/encolumna2.jpeg',
+    garganta15: '/images/fabricacion2.jpeg',
+    garganta3: '/images/fabricacion1.jpeg',
+    taller: '/images/prensa%20de%20taller.jpeg',
+  },
+  reacondicionamiento: {
+    antes: '/images/reacondicionamiento2.jpeg',
+    despues: '/images/reacondicionamiento1.png',
+  },
+  usadas: {
+    principal: '/images/reacondicionada1.jpeg',
+    stockVerde: '/images/prensa_usada1.jpeg',
+    reacondicionadaDomarco: '/images/reacondicionada2.jpeg',
+  },
+  servicioTecnico: {
+    plantaGrua: '/images/prensa_usada2.jpeg',
+    taller: '/images/prensa%20de%20taller.jpeg',
+    valvulas: '/images/boton_equipos2.jpeg',
+  },
+  mangueras: {
+    muebleProduccion: '/images/fabricacion4.jpeg',
+    compactaBanco: '/images/fabricacion5.jpeg',
+    mordazas: '/images/prensatecnico.jpeg',
+  },
+  equipos: {
+    central: '/images/boton_equipos1.jpeg',
+    valvulas: '/images/boton_equipos2.jpeg',
+    miniCentral: '/images/boton_equipos3.jpeg',
+  },
+}
+
+export const serviceThumbnails: Record<string, string> = {
+  '01': '/images/encolumna2.jpeg',
+  '02': '/images/reacondicionamiento1.png',
+  '03': '/images/reacondicionada1.jpeg',
+  '04': '/images/prensatecnico.jpeg',
+  '05': '/images/fabricacion4.jpeg',
+  '06': '/images/boton_equipos1.jpeg',
+}
+
 export const serviceImages = [
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/encolumna2-ZsHD8UGVyu5UTGEGJb4cSlKpCYajur.jpeg',
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ipVPxI4lVnfJiYHV72mQTwDdFfhu89.png',
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/reacondicionamiento3-dJwqqhCN1cnpAMBe4PO9l8XVRvuO0k.jpeg',
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-09-18%20at%206.37-NksExEU3sMqCvD2pevrLhLT2BsVXSe.jpeg',
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/prensa%20de%20equipo-Ik0uY0GNYBEJwPB0DvVSgTwMx965Hh.jpeg',
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/encolumna2-ZsHD8UGVyu5UTGEGJb4cSlKpCYajur.jpeg',
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-eOBtJKz0uZzumrRk5yAi3BhXQoH6KO.png',
+  '/images/encolumna2.jpeg',
+  '/images/reacondicionamiento1.png',
+  '/images/reacondicionamiento2.jpeg',
+  '/images/prensatecnico.jpeg',
+  '/images/fabricacion4.jpeg',
+  '/images/reacondicionada1.jpeg',
+  '/images/boton_equipos1.jpeg',
 ]
 
 export const services = [

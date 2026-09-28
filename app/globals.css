@@ -239,15 +239,18 @@ body {
 }
 
 .hero-image-1 {
-  background-image: linear-gradient(135deg, rgba(7, 59, 91, .42), rgba(111, 190, 238, .13)), url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-eOBtJKz0uZzumrRk5yAi3BhXQoH6KO.png');
+  background-image: linear-gradient(135deg, rgba(7, 59, 91, .42), rgba(111, 190, 238, .13)), url('/images/encolumna2.jpeg');
+  background-position: center 35%;
 }
 
 .hero-image-2 {
-  background-image: linear-gradient(135deg, rgba(7, 59, 91, .34), rgba(20, 121, 201, .1)), url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/reacondicionamiento3-dJwqqhCN1cnpAMBe4PO9l8XVRvuO0k.jpeg');
+  background-image: linear-gradient(135deg, rgba(7, 59, 91, .34), rgba(20, 121, 201, .1)), url('/images/reacondicionamiento1.png');
+  background-position: center 40%;
 }
 
 .hero-image-3 {
-  background-image: linear-gradient(135deg, rgba(7, 59, 91, .3), rgba(20, 121, 201, .08)), url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/prensa%20de%20equipo-Ik0uY0GNYBEJwPB0DvVSgTwMx965Hh.jpeg');
+  background-image: linear-gradient(135deg, rgba(7, 59, 91, .3), rgba(20, 121, 201, .08)), url('/images/prensa_usada2.jpeg');
+  background-position: center 45%;
 }
 
 .hero-image-note {
@@ -794,15 +797,18 @@ body {
 }
 
 .hero-image-1 {
-  background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/encolumna2-ZsHD8UGVyu5UTGEGJb4cSlKpCYajur.jpeg');
+  background-image: url('/images/encolumna2.jpeg');
+  background-position: center 35%;
 }
 
 .hero-image-2 {
-  background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ipVPxI4lVnfJiYHV72mQTwDdFfhu89.png');
+  background-image: url('/images/reacondicionamiento1.png');
+  background-position: center 40%;
 }
 
 .hero-image-3 {
-  background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-09-18%20at%206.37-NksExEU3sMqCvD2pevrLhLT2BsVXSe.jpeg');
+  background-image: url('/images/prensa_usada2.jpeg');
+  background-position: center 45%;
 }
 
 .hero-image-note {
@@ -930,12 +936,12 @@ body {
 
 .service-directory-item {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 14px;
   min-width: 0;
   min-height: 88px;
-  padding: 16px;
+  padding: 14px 16px;
   border-right: 1px solid #c8c9ca;
   border-bottom: 1px solid #c8c9ca;
   background: transparent;
@@ -943,6 +949,26 @@ body {
   text-align: left;
   cursor: pointer;
   transition: background .25s, color .25s;
+}
+
+.service-directory-thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 3px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(49, 92, 141, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.service-directory-item:hover .service-directory-thumb,
+.service-directory-item.is-active .service-directory-thumb {
+  transform: scale(1.05);
+  border-color: #315c8d;
+  box-shadow: 0 4px 12px rgba(49, 92, 141, 0.22);
 }
 
 .service-directory-number {
@@ -1563,24 +1589,39 @@ body {
   min-height: 0;
 }
 
-/* 02 Reacondicionamiento: split 50/50 vertical antes / después */
+/* 02 Reacondicionamiento: interactive before / after comparison */
 .sv-02 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  gap: 3px;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
   background: #101113;
+  user-select: none;
+}
+
+.sv-02-tile {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 .sv-02-divider {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 50%;
-  width: 2px;
+  width: 3px;
   transform: translateX(-50%);
-  background: #f4f4f2;
-  z-index: 4;
+  background: #ffffff;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.65);
+  z-index: 5;
+  cursor: ew-resize;
+  pointer-events: none;
 }
 
 .sv-02-divider::after {
@@ -1591,36 +1632,57 @@ body {
   transform: translate(-50%, -50%);
   background: #315c8d;
   color: #fff;
-  font-size: 11px;
-  width: 26px;
-  height: 26px;
+  font-size: 13px;
+  font-weight: 700;
+  width: 32px;
+  height: 32px;
   display: grid;
   place-items: center;
   border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .35);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, .5);
+  border: 2px solid #ffffff;
 }
 
 .sv-02-label {
   position: absolute;
   inset-x: 0;
   bottom: 0;
-  padding: 22px 12px 10px;
+  padding: 24px 14px 12px;
   z-index: 3;
+  pointer-events: none;
 }
 
 .sv-02-label-before {
-  background: linear-gradient(to top, rgba(10, 10, 11, .82), transparent);
+  background: linear-gradient(to top, rgba(10, 10, 11, .9), transparent);
 }
 
 .sv-02-label-after {
-  background: linear-gradient(to top, rgba(15, 42, 80, .86), transparent);
+  background: linear-gradient(to top, rgba(15, 42, 80, .92), transparent);
 }
 
 .sv-02-label span {
   color: #fff;
   font: 700 9px/1 monospace;
-  letter-spacing: .18em;
+  letter-spacing: .16em;
   text-transform: uppercase;
+}
+
+.sv-02-help-pill {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 12px;
+  background: rgba(10, 10, 11, .85);
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 9999px;
+  color: #e2e7ec;
+  font: 700 8.5px/1 monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 6;
+  backdrop-filter: blur(4px);
 }
 
 /* 03 Prensas usadas: 60% hero + 40% 2 thumbs bottom */
@@ -1680,14 +1742,21 @@ body {
   min-height: 0;
 }
 
-/* 05 Prensas para mangueras: 50/50 horizontal + watermark */
+/* 05 Prensas para mangueras: 58% main + 42% 2 stacked side details */
 .sv-05 {
   display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1.35fr 1fr;
+  grid-template-rows: 1fr;
   gap: 3px;
   background: #101113;
   position: relative;
+}
+
+.sv-05-side {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 3px;
+  min-height: 0;
 }
 
 .sv-05-watermark {
@@ -2278,8 +2347,14 @@ body {
 
   .service-directory-item {
     min-height: 70px;
-    padding: 14px 0;
+    padding: 14px 4px;
     border-right: 0;
+    gap: 12px;
+  }
+
+  .service-directory-thumb {
+    width: 40px;
+    height: 40px;
   }
 
   .service-directory-item strong {

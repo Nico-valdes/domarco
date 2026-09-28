@@ -1,17 +1,8 @@
 'use client'
 
+import { useState, useRef, useCallback } from 'react'
 import { ArrowUpRight } from 'lucide-react'
-import { serviceImages, services, type Service } from './domarco-data'
-
-// Curated image indices for each service:
-// 0: encolumna2        — prensa de columna, vista lateral
-// 1: image-ipVPxI4     — prensa grande/plana en taller
-// 2: reacondicionamiento3 — prensa en proceso de reconstrucción
-// 3: WhatsApp 6.37     — prensa operando en producción
-// 4: prensa de equipo  — prensa compacta de equipos
-// 5: encolumna2 (dup)  — segunda vista columna
-// 6: image-eOBtJKz     — prensa pequeña / mangueras
-const img = (i: number) => serviceImages[i % serviceImages.length]
+import { servicePhotos, serviceThumbnails, services, type Service } from './domarco-data'
 
 type DomarcoServicesProps = {
   activeService: number
@@ -32,6 +23,11 @@ function ServiceDirectory({ activeService, onSelectService }: DomarcoServicesPro
           onClick={() => onSelectService(index)}
         >
           <span className="service-directory-number">{service.no}</span>
+          <span
+            className="service-directory-thumb"
+            style={{ backgroundImage: `url(${serviceThumbnails[service.no]})` }}
+            aria-hidden="true"
+          />
           <span className="service-directory-copy">
             <small>{service.label}</small>
             <strong>{service.title}</strong>
@@ -43,33 +39,122 @@ function ServiceDirectory({ activeService, onSelectService }: DomarcoServicesPro
   )
 }
 
-// ─── 01 FABRICACIÓN ── split: columna grande + 2 detalles verticales
+// ─── 01 FABRICACIÓN ── split: columna grande + 2 prensas de garganta y taller
 function Visual01() {
   return (
     <div className="sv sv-01" aria-label="Fabricación de prensas" role="img">
-      <div className="sv-tile sv-01-main" style={{ backgroundImage: `url(${img(0)})` }}>
-        <span className="sv-chip">Prensa de columna</span>
+      <div
+        className="sv-tile sv-01-main"
+        style={{
+          backgroundImage: `url(${servicePhotos.fabricacion.columna})`,
+          backgroundPosition: 'center 35%',
+        }}
+      >
+        <span className="sv-chip">Prensa de columna · PCH 150</span>
       </div>
       <div className="sv-01-side">
-        <div className="sv-tile" style={{ backgroundImage: `url(${img(4)})` }} />
-        <div className="sv-tile" style={{ backgroundImage: `url(${img(1)})` }}>
-          <span className="sv-chip sv-chip-sm">A medida</span>
+        <div
+          className="sv-tile"
+          style={{
+            backgroundImage: `url(${servicePhotos.fabricacion.garganta15})`,
+            backgroundPosition: 'center 30%',
+          }}
+        >
+          <span className="sv-chip sv-chip-sm">Prensa de garganta · PG 15</span>
+        </div>
+        <div
+          className="sv-tile"
+          style={{
+            backgroundImage: `url(${servicePhotos.fabricacion.garganta3})`,
+            backgroundPosition: 'center 25%',
+          }}
+        >
+          <span className="sv-chip sv-chip-sm">A medida · PG 3</span>
         </div>
       </div>
     </div>
   )
 }
 
-// ─── 02 REACONDICIONAMIENTO ── antes / después con divider vertical
+// ─── 02 REACONDICIONAMIENTO ── antes / después interactivo deslizante
 function Visual02() {
+  const [sliderPos, setSliderPos] = useState(50)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const isDragging = useRef(false)
+
+  const updatePos = useCallback((clientX: number) => {
+    if (!containerRef.current) return
+    const rect = containerRef.current.getBoundingClientRect()
+    const x = Math.max(0, Math.min(rect.width, clientX - rect.left))
+    const pct = (x / rect.width) * 100
+    setSliderPos(Math.round(pct * 10) / 10)
+  }, [])
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    isDragging.current = true
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId)
+    } catch {
+      // ignore
+    }
+    updatePos(e.clientX)
+  }
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (isDragging.current) {
+      updatePos(e.clientX)
+    }
+  }
+
+  const handlePointerUp = () => {
+    isDragging.current = false
+  }
+
   return (
-    <div className="sv sv-02" aria-label="Reacondicionamiento de prensas" role="img">
-      <div className="sv-tile sv-02-img" style={{ backgroundImage: `url(${img(2)})` }}>
-        <div className="sv-02-label sv-02-label-before"><span>Antes</span></div>
+    <div
+      ref={containerRef}
+      className="sv sv-02"
+      aria-label="Reacondicionamiento de prensas: Comparación antes y después"
+      role="region"
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp}
+      style={{ touchAction: 'none', cursor: 'ew-resize' }}
+    >
+      {/* Antes (fondo completo) */}
+      <div
+        className="sv-tile sv-02-tile"
+        style={{
+          backgroundImage: `url(${servicePhotos.reacondicionamiento.antes})`,
+          backgroundPosition: 'center 38%',
+        }}
+      >
+        <div className="sv-02-label sv-02-label-before">
+          <span>Antes · Estado inicial</span>
+        </div>
       </div>
-      <div className="sv-02-divider" aria-hidden="true" />
-      <div className="sv-tile sv-02-img" style={{ backgroundImage: `url(${img(0)})` }}>
-        <div className="sv-02-label sv-02-label-after"><span>Después</span></div>
+
+      {/* Después (capa recortada al slider) */}
+      <div
+        className="sv-tile sv-02-tile"
+        style={{
+          backgroundImage: `url(${servicePhotos.reacondicionamiento.despues})`,
+          backgroundPosition: 'center 38%',
+          clipPath: `inset(0 0 0 ${sliderPos}%)`,
+        }}
+      >
+        <div className="sv-02-label sv-02-label-after">
+          <span>Después · Reacondicionada a nuevo</span>
+        </div>
+      </div>
+
+      {/* Divisor interactivo */}
+      <div className="sv-02-divider" style={{ left: `${sliderPos}%` }} aria-hidden="true" />
+
+      {/* Indicador superior */}
+      <div className="sv-02-help-pill" aria-hidden="true">
+        <span>Deslizá para comparar</span>
       </div>
     </div>
   )
@@ -79,12 +164,34 @@ function Visual02() {
 function Visual03() {
   return (
     <div className="sv sv-03" aria-label="Prensas usadas en stock" role="img">
-      <div className="sv-tile sv-03-main" style={{ backgroundImage: `url(${img(1)})` }}>
-        <span className="sv-chip sv-chip-dark">Stock disponible</span>
+      <div
+        className="sv-tile sv-03-main"
+        style={{
+          backgroundImage: `url(${servicePhotos.usadas.principal})`,
+          backgroundPosition: 'center 40%',
+        }}
+      >
+        <span className="sv-chip sv-chip-dark">Stock disponible · Gran capacidad</span>
       </div>
       <div className="sv-03-strip">
-        <div className="sv-tile" style={{ backgroundImage: `url(${img(0)})` }} />
-        <div className="sv-tile" style={{ backgroundImage: `url(${img(3)})` }} />
+        <div
+          className="sv-tile"
+          style={{
+            backgroundImage: `url(${servicePhotos.usadas.stockVerde})`,
+            backgroundPosition: 'center 35%',
+          }}
+        >
+          <span className="sv-chip sv-chip-sm">Revisadas en taller</span>
+        </div>
+        <div
+          className="sv-tile"
+          style={{
+            backgroundImage: `url(${servicePhotos.usadas.reacondicionadaDomarco})`,
+            backgroundPosition: 'center 35%',
+          }}
+        >
+          <span className="sv-chip sv-chip-sm">Garantía DOMARCO</span>
+        </div>
       </div>
     </div>
   )
@@ -94,33 +201,75 @@ function Visual03() {
 function Visual04() {
   return (
     <div className="sv sv-04" aria-label="Servicio técnico especializado" role="img">
-      <div className="sv-tile sv-04-main" style={{ backgroundImage: `url(${img(3)})` }}>
+      <div
+        className="sv-tile sv-04-main"
+        style={{
+          backgroundImage: `url(${servicePhotos.servicioTecnico.plantaGrua})`,
+          backgroundPosition: 'center 40%',
+        }}
+      >
         <div className="sv-04-badge">
           <span className="sv-04-badge-no">04</span>
           <span className="sv-04-badge-text">Diagnóstico &<br />Mantenimiento</span>
         </div>
+        <span className="sv-chip">Asistencia y montaje en planta</span>
       </div>
       <div className="sv-04-bottom">
-        <div className="sv-tile" style={{ backgroundImage: `url(${img(6)})` }}>
-          <span className="sv-chip sv-chip-sm">En planta</span>
+        <div
+          className="sv-tile"
+          style={{
+            backgroundImage: `url(${servicePhotos.servicioTecnico.taller})`,
+            backgroundPosition: 'center 40%',
+          }}
+        >
+          <span className="sv-chip sv-chip-sm">Reparación en taller</span>
         </div>
-        <div className="sv-tile" style={{ backgroundImage: `url(${img(4)})` }}>
-          <span className="sv-chip sv-chip-sm">En taller</span>
+        <div
+          className="sv-tile"
+          style={{
+            backgroundImage: `url(${servicePhotos.servicioTecnico.valvulas})`,
+            backgroundPosition: 'center',
+          }}
+        >
+          <span className="sv-chip sv-chip-sm">Válvulas & Manifolds</span>
         </div>
       </div>
     </div>
   )
 }
 
-// ─── 05 PRENSAS PARA MANGUERAS ── 2 paneles horizontales + watermark
+// ─── 05 PRENSAS PARA MANGUERAS ── principal + 2 modelos de banco y mordazas
 function Visual05() {
   return (
     <div className="sv sv-05" aria-label="Prensas para mangueras" role="img">
-      <div className="sv-tile sv-05-top" style={{ backgroundImage: `url(${img(4)})` }}>
-        <span className="sv-chip sv-chip-sm">Modelos taller y móvil</span>
+      <div
+        className="sv-tile sv-05-main"
+        style={{
+          backgroundImage: `url(${servicePhotos.mangueras.muebleProduccion})`,
+          backgroundPosition: 'center 40%',
+        }}
+      >
+        <span className="sv-chip">Línea producción con mueble</span>
       </div>
-      <div className="sv-tile sv-05-bottom" style={{ backgroundImage: `url(${img(6)})` }}>
-        <span className="sv-chip">Armado de mangueras y terminales</span>
+      <div className="sv-05-side">
+        <div
+          className="sv-tile"
+          style={{
+            backgroundImage: `url(${servicePhotos.mangueras.compactaBanco})`,
+            backgroundPosition: 'center',
+          }}
+        >
+          <span className="sv-chip sv-chip-sm">Modelo compacto taller</span>
+        </div>
+        <div
+          className="sv-tile"
+          style={{
+            backgroundImage: `url(${servicePhotos.mangueras.mordazas})`,
+            backgroundPosition: 'center 40%',
+          }}
+        >
+          <span className="sv-chip sv-chip-sm">Juego de mordazas</span>
+        </div>
       </div>
       <span className="sv-05-watermark" aria-hidden="true">05</span>
     </div>
@@ -131,15 +280,33 @@ function Visual05() {
 function Visual06() {
   return (
     <div className="sv sv-06" aria-label="Equipos hidráulicos industriales" role="img">
-      <div className="sv-tile sv-06-a" style={{ backgroundImage: `url(${img(1)})` }}>
-        <span className="sv-chip">Centrales hidráulicas</span>
+      <div
+        className="sv-tile sv-06-a"
+        style={{
+          backgroundImage: `url(${servicePhotos.equipos.central})`,
+          backgroundPosition: 'center',
+        }}
+      >
+        <span className="sv-chip">Centrales hidráulicas DOMARCO</span>
       </div>
       <div className="sv-06-bc">
-        <div className="sv-tile sv-06-b" style={{ backgroundImage: `url(${img(4)})` }}>
-          <span className="sv-chip sv-chip-sm">Cilindros</span>
+        <div
+          className="sv-tile sv-06-b"
+          style={{
+            backgroundImage: `url(${servicePhotos.equipos.valvulas})`,
+            backgroundPosition: 'center',
+          }}
+        >
+          <span className="sv-chip sv-chip-sm">Bloques & Válvulas</span>
         </div>
-        <div className="sv-tile sv-06-c" style={{ backgroundImage: `url(${img(6)})` }}>
-          <span className="sv-chip sv-chip-sm">Bombas</span>
+        <div
+          className="sv-tile sv-06-c"
+          style={{
+            backgroundImage: `url(${servicePhotos.equipos.miniCentral})`,
+            backgroundPosition: 'center',
+          }}
+        >
+          <span className="sv-chip sv-chip-sm">Mini-centrales & Bombas</span>
         </div>
       </div>
     </div>
