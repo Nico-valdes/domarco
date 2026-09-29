@@ -6,14 +6,14 @@ export function WhatsAppButton() {
       href="https://wa.me/5491136912384?text=Hola%20DOMARCO,%20quisiera%20hacer%20una%20consulta"
       target="_blank"
       rel="noopener noreferrer"
-      className="whatsapp-float group"
+      className="fixed bottom-5 right-5 min-[701px]:bottom-7 min-[701px]:right-7 z-[9999] flex items-center justify-center w-[52px] h-[52px] min-[701px]:w-[58px] min-[701px]:h-[58px] rounded-full bg-[#25d366] text-white shadow-[0_6px_20px_rgba(37,211,102,0.42),0_2px_6px_rgba(0,0,0,0.2)] hover:bg-[#20ba5a] hover:-translate-y-[3px] hover:scale-[1.06] hover:shadow-[0_10px_26px_rgba(37,211,102,0.55),0_4px_10px_rgba(0,0,0,0.22)] active:translate-y-0 active:scale-[0.96] transition-[transform,box-shadow,background-color] duration-250 ease-out no-underline group"
       aria-label="Contactar a DOMARCO por WhatsApp"
     >
-      <span className="whatsapp-float-tooltip">
+      <span className="hidden min-[701px]:block absolute right-[calc(100%+14px)] top-1/2 -translate-y-1/2 bg-[#111214] text-[#f4f4f2] font-mono text-[11px] font-bold leading-[1.2] tracking-[0.1em] uppercase py-2 px-3.5 rounded-[4px] whitespace-nowrap pointer-events-none opacity-0 invisible shadow-[0_4px_14px_rgba(0,0,0,0.3)] border border-[#303338] transition-[opacity,transform,visibility] duration-200 ease-out group-hover:opacity-100 group-hover:visible group-hover:-translate-x-1">
         Consultar por WhatsApp
       </span>
       <svg
-        className="whatsapp-float-icon"
+        className="w-7 h-7 min-[701px]:w-8 min-[701px]:h-8 block"
         viewBox="0 0 32 32"
         fill="currentColor"
         aria-hidden="true"
