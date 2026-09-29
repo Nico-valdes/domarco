@@ -7,31 +7,33 @@ export function DomarcoProcess() {
       <div className="mx-auto max-w-[1480px] px-4 py-12 sm:px-6 sm:py-20 lg:px-12 lg:py-28">
         <div className="grid grid-cols-1 items-end gap-6 min-[701px]:grid-cols-[1.1fr_0.9fr] min-[701px]:gap-14">
           <div>
-            <p className="mb-3.5 text-[10px] font-bold uppercase tracking-[.25em] text-[#84d2f6]">
+            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[.25em] text-[#84d2f6]">
               Cómo lo hacemos
             </p>
-            <h2 className="font-['Arial',sans-serif] text-[clamp(2.4rem,4.2vw,4.2rem)] font-bold uppercase leading-[0.95] tracking-[-0.04em] text-white">
+            <h2 className="font-['Arial',sans-serif] text-[clamp(2.1rem,6.8vw,2.75rem)] font-bold uppercase leading-[0.98] tracking-[-0.03em] text-white min-[701px]:text-[clamp(2.4rem,4.2vw,4.2rem)] min-[701px]:leading-[0.95] min-[701px]:tracking-[-0.04em]">
               Del desafío a la<br />
-              <span className="text-[#8fb4da]">solución en marcha.</span>
+              <span className="text-[#8fb4da]">
+                solución en <br className="min-[701px]:hidden" />marcha.
+              </span>
             </h2>
           </div>
-          <p className="mb-1.5 max-w-[360px] text-[15px] leading-relaxed text-[#c3d0de]">
+          <p className="mb-1.5 max-w-[360px] text-[15px] font-normal leading-relaxed text-[#c3d0de]">
             Un proceso claro, técnico y cercano para que cada decisión tenga un respaldo.
           </p>
         </div>
-        <div className="mt-12 grid grid-cols-2 border-t border-white/30 min-[701px]:mt-[72px] min-[701px]:grid-cols-4">
+        <div className="mt-8 border-t border-white/20 min-[701px]:mt-[72px] min-[701px]:grid min-[701px]:grid-cols-4">
           {processSteps.map((step) => (
             <article
               key={step.no}
-              className="flex min-h-[220px] flex-col py-[18px] pr-3.5 max-[700px]:border-r max-[700px]:border-white/30 max-[700px]:even:border-r-0 max-[700px]:even:pl-3.5 min-[701px]:min-h-[250px] min-[701px]:border-r min-[701px]:border-white/30 min-[701px]:py-6 min-[701px]:pr-[22px] min-[701px]:[&:not(:first-child)]:pl-[22px] min-[701px]:last:border-r-0"
+              className="flex flex-col border-b border-white/20 py-5 ast:border-b-0 min-[701px]:min-h-[250px] min-[701px]:border-b-0 min-[701px]:border-r min-[701px]:border-white/20 min-[701px]:py-6 min-[701px]:pr-[22px] min-[701px]:[&:not(:first-child)]:pl-[22px] min-[701px]:last:border-r-0"
             >
-              <span className="font-mono text-[11px] leading-none tracking-[.15em] text-[#8fb4da]">
+              <span className="font-mono text-[11px] font-medium leading-none tracking-[.2em] text-[#8fb4da]">
                 {step.no}
               </span>
-              <h3 className="mt-[38px] font-['Arial',sans-serif] text-[1.35rem] font-bold uppercase leading-none tracking-[-0.04em] text-white min-[701px]:mt-14 min-[701px]:text-[clamp(1.5rem,2.3vw,2.4rem)]">
+              <h3 className="mt-3.5 text-[1.15rem] font-normal uppercase leading-snug tracking-[0.01em] text-white min-[701px]:mt-14 min-[701px]:text-[clamp(1.35rem,2.1vw,2.2rem)] min-[701px]:tracking-tight">
                 {step.title}
               </h3>
-              <p className="mt-3.5 max-w-[230px] text-[0.86rem] leading-[1.55] text-[#c3d0de] min-[701px]:text-[0.92rem]">
+              <p className="mt-2 text-[0.92rem] font-normal leading-[1.6] text-[#c3d0de] min-[701px]:mt-3.5 min-[701px]:max-w-[230px]">
                 {step.text}
               </p>
             </article>
