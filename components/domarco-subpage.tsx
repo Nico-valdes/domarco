@@ -2,28 +2,8 @@
 
 import Link from 'next/link'
 import type { ReactNode } from 'react'
-import { ArrowLeft, ArrowUpRight } from 'lucide-react'
-import { logo } from './domarco-data'
-
-export function DomarcoSubpageHeader() {
-  return (
-    <header className="sticky top-0 z-40 w-full border-b border-[#27282b] bg-[#0a0a0b] text-[#f7fbff]">
-      <div className="mx-auto flex max-w-[1480px] items-center justify-between px-6 py-4 lg:px-12">
-        <Link href="/" className="relative block w-[178px] pb-2 max-[700px]:w-[min(44vw,140px)] max-[700px]:pb-0">
-          <img src={logo} alt="DOMARCO Prensas Hidráulicas" className="block w-full h-auto screen transition-transform duration-300 hover:-translate-y-[1px]" />
-        </Link>
-        <nav className="hidden items-center gap-9 text-[10px] font-bold uppercase tracking-[.2em] lg:flex">
-          <Link href="/historia" className="relative text-[#b8b9bc] py-2 px-0 hover:text-white transition-colors duration-200 after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-[1px] after:bg-[#7c9fc5] after:scale-x-0 hover:after:scale-x-100 after:origin-left after:transition-transform after:duration-300">Nuestra historia</Link>
-          <Link href="/prensas" className="relative text-[#b8b9bc] py-2 px-0 hover:text-white transition-colors duration-200 after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-[1px] after:bg-[#7c9fc5] after:scale-x-0 hover:after:scale-x-100 after:origin-left after:transition-transform after:duration-300">Prensas</Link>
-          <Link href="/contacto" className="relative text-[#b8b9bc] py-2 px-0 hover:text-white transition-colors duration-200 after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-[1px] after:bg-[#7c9fc5] after:scale-x-0 hover:after:scale-x-100 after:origin-left after:transition-transform after:duration-300">Contacto</Link>
-        </nav>
-        <Link href="/" className="inline-flex items-center gap-[7px] text-[#c2d9e8] text-[10px] max-[700px]:text-[9px] font-bold tracking-[.14em] uppercase hover:text-[#84d2f6] transition-colors">
-          <ArrowLeft className="size-4" /> Inicio
-        </Link>
-      </div>
-    </header>
-  )
-}
+import { ArrowUpRight } from 'lucide-react'
+import { DomarcoHeader } from './domarco-header'
 
 export function DomarcoSubpage({
   eyebrow,
@@ -42,7 +22,7 @@ export function DomarcoSubpage({
 }) {
   return (
     <main className={`min-h-screen bg-[#f4f4f2] text-[#121315] ${pageClassName}`}>
-      <DomarcoSubpageHeader />
+      <DomarcoHeader />
       <section className="bg-[#0a0a0b] text-[#f4f4f2] border-b border-[#27282b]">
         <div className="mx-auto max-w-[1480px] px-6 lg:px-12 pt-12 pb-10 sm:pt-14 sm:pb-12 lg:pt-16 lg:pb-14">
           <p className="hidden md:block text-[10px] font-bold tracking-[.25em] uppercase text-[#7c9fc5] m-0 mb-3">

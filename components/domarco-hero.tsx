@@ -31,7 +31,10 @@ export function DomarcoHero({ onSelectService }: DomarcoHeroProps) {
               href="#servicios"
               key={service.no}
               className="hero-service-tile"
-              onClick={() => onSelectService(service.no)}
+              onClick={(e) => {
+                e.preventDefault()
+                onSelectService(service.no)
+              }}
               aria-label={`Ver ${service.title}`}
             >
               <div className={`hero-service-image hero-image-${index + 1}`}>

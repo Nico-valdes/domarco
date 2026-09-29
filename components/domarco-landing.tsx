@@ -12,6 +12,14 @@ export function DomarcoLanding() {
 
   const selectService = (index: number) => {
     setActiveService(index)
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      setTimeout(() => {
+        document.getElementById('detalle-servicio')?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        })
+      }, 60)
+    }
   }
 
   const selectServiceByNumber = (serviceNo: string) => {
@@ -19,12 +27,16 @@ export function DomarcoLanding() {
     if (index < 0) return
 
     setActiveService(index)
-    requestAnimationFrame(() => {
-      document.getElementById('servicios')?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      })
-    })
+    if (typeof window !== 'undefined') {
+      const isMobile = window.innerWidth < 1024
+      const targetId = isMobile ? 'detalle-servicio' : 'servicios'
+      setTimeout(() => {
+        document.getElementById(targetId)?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        })
+      }, 60)
+    }
   }
 
   return (

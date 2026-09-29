@@ -1,4 +1,4 @@
-export const logo = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/cartelitos-3UmUfrToUd1qfG0EN7sH61Z77WIJHh.png'
+export const logo = '/logo_domarco.png'
 
 export const serviceLayouts: Record<string, string> = {
   '01': 'layout-split',
@@ -12,8 +12,8 @@ export const serviceLayouts: Record<string, string> = {
 export const servicePhotos = {
   fabricacion: {
     columna: '/images/encolumna2.jpeg',
-    garganta15: '/images/fabricacion2.jpeg',
-    garganta3: '/images/fabricacion1.jpeg',
+    garganta15: '/images/fabricacion2.jpeg?v=2',
+    garganta3: '/images/fabricacion1.jpeg?v=2',
     taller: '/images/prensa%20de%20taller.jpeg',
   },
   reacondicionamiento: {
@@ -26,7 +26,7 @@ export const servicePhotos = {
     reacondicionadaDomarco: '/images/reacondicionada2.jpeg',
   },
   servicioTecnico: {
-    plantaGrua: '/images/prensa_usada2.jpeg',
+    plantaGrua: '/images/prensatecnico.jpeg',
     taller: '/images/prensa%20de%20taller.jpeg',
     valvulas: '/images/boton_equipos2.jpeg',
   },

@@ -220,7 +220,7 @@ body {
 }
 
 .hero-image-3 {
-  background-image: linear-gradient(135deg, rgba(7, 59, 91, .3), rgba(20, 121, 201, .08)), url('/images/prensa_usada2.jpeg');
+  background-image: linear-gradient(135deg, rgba(7, 59, 91, .3), rgba(20, 121, 201, .08)), url('/images/prensatecnico.jpeg');
   background-position: center 45%;
 }
 
@@ -661,7 +661,7 @@ body {
 }
 
 .hero-image-3 {
-  background-image: url('/images/prensa_usada2.jpeg');
+  background-image: url('/images/prensatecnico.jpeg');
   background-position: center 45%;
 }
 
@@ -870,9 +870,11 @@ body {
   transform: translate(3px, -3px);
 }
 
-.service-showcase {
+.service-showcase,
+#detalle-servicio {
   margin-top: 30px;
   border-top: 2px solid #315c8d;
+  scroll-margin-top: 16px;
   animation: service-panel-in .35s ease both;
 }
 
@@ -985,6 +987,136 @@ body {
   color: #121315;
   border-color: #121315;
 }
+
+/* ─── 05 PRENSAS PARA MANGUERAS: Catalog Card & Actions ─── */
+.service-catalog-card {
+  margin-top: 24px;
+  padding: 20px 22px;
+  background: #f7f9fb;
+  border: 1px solid #c9d5e3;
+  border-left: 4px solid #315c8d;
+  box-shadow: 0 4px 16px -4px rgba(18, 55, 95, 0.08);
+}
+
+.service-catalog-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.service-catalog-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #315c8d;
+  font: 700 10px/1 monospace;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.service-catalog-format {
+  font: 10px/1 monospace;
+  color: #6a707a;
+  letter-spacing: .1em;
+}
+
+.service-catalog-card-title {
+  margin: 0 0 6px;
+  color: #121315;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.service-catalog-card-desc {
+  margin: 0;
+  color: #4a4d53;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.service-catalog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.btn-catalog-preview {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #315c8d;
+  color: #ffffff !important;
+  font: 700 11px/1 monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid #315c8d;
+  transition: background-color .2s, transform .2s, box-shadow .2s;
+}
+
+.btn-catalog-preview:hover {
+  background: #204169;
+  border-color: #204169;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(49, 92, 141, 0.25);
+}
+
+.btn-catalog-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 14px;
+  background: transparent;
+  border: 1px solid #315c8d;
+  color: #315c8d !important;
+  font: 700 11px/1 monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color .2s, color .2s;
+}
+
+.btn-catalog-download:hover {
+  background: #315c8d;
+  color: #ffffff !important;
+}
+
+.service-contact-row {
+  margin-top: 6px;
+}
+
+.sv-05-catalog-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(18, 55, 95, .92);
+  color: #ffffff !important;
+  font: 700 9px/1 monospace;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  z-index: 4;
+  border: 1px solid rgba(132, 210, 246, 0.35);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  transition: background-color .2s, transform .2s;
+}
+
+.sv-05-catalog-badge:hover {
+  background: #315c8d;
+  transform: translateY(-1px);
+}
+
 
 
 @media (max-width: 1100px) and (min-width: 701px) {
@@ -1385,19 +1517,20 @@ body {
 
 .sv-02-label {
   position: absolute;
-  inset-x: 0;
-  bottom: 0;
-  padding: 24px 14px 12px;
+  bottom: 12px;
+  padding: 5px 9px;
+  background: rgba(10, 10, 11, .86);
   z-index: 3;
   pointer-events: none;
 }
 
 .sv-02-label-before {
-  background: linear-gradient(to top, rgba(10, 10, 11, .9), transparent);
+  left: 12px;
 }
 
 .sv-02-label-after {
-  background: linear-gradient(to top, rgba(15, 42, 80, .92), transparent);
+  right: 12px;
+  background: rgba(49, 92, 141, .94);
 }
 
 .sv-02-label span {

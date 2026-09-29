@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useCallback } from 'react'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, Download, Eye, FileText } from 'lucide-react'
 import { servicePhotos, serviceThumbnails, services, type Service } from './domarco-data'
 
 type DomarcoServicesProps = {
@@ -18,7 +18,7 @@ function ServiceDirectory({ activeService, onSelectService }: DomarcoServicesPro
           type="button"
           role="tab"
           aria-selected={activeService === index}
-          aria-controls={`service-panel-${service.no}`}
+          aria-controls="detalle-servicio"
           className={`service-directory-item ${activeService === index ? 'is-active' : ''}`}
           onClick={() => onSelectService(index)}
         >
@@ -131,7 +131,7 @@ function Visual02() {
         }}
       >
         <div className="sv-02-label sv-02-label-before">
-          <span>Antes · Estado inicial</span>
+          <span>Antes</span>
         </div>
       </div>
 
@@ -145,7 +145,7 @@ function Visual02() {
         }}
       >
         <div className="sv-02-label sv-02-label-after">
-          <span>Después · Reacondicionada a nuevo</span>
+          <span>Después</span>
         </div>
       </div>
 
@@ -271,6 +271,16 @@ function Visual05() {
           <span className="sv-chip sv-chip-sm">Juego de mordazas</span>
         </div>
       </div>
+      <a
+        href="/catalago_accesorios.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="sv-05-catalog-badge"
+        title="Abrir y ver catálogo oficial en PDF"
+      >
+        <FileText className="size-3" />
+        <span>Ver catálogo PDF ↗</span>
+      </a>
       <span className="sv-05-watermark" aria-hidden="true">05</span>
     </div>
   )
@@ -323,6 +333,73 @@ const visualByNo: Record<string, React.ReactNode> = {
 }
 
 function ServicePanel({ service }: { service: Service }) {
+  if (service.no === '05') {
+    return (
+      <article id={`service-${service.no}`} className={`service-feature service-feature-${service.no} service-feature-mangueras`}>
+        <div className="service-feature-copy">
+          <div className="service-feature-meta">
+            <span>{service.no}</span>
+            <span>ARMADO DE MANGUERAS & ACCESORIOS</span>
+          </div>
+          <h3>{service.title}</h3>
+          <div className="service-feature-underline" />
+          <p className="detail-copy">
+            Diseñamos y fabricamos prensas para el abrochado continuo de mangueras hidráulicas de 1 a 6 mallas (hasta 2" y diámetros especiales). Complementamos la provisión de equipos con toda la línea de insumos y repuestos para armado en taller o en campo.
+          </p>
+          <p className="service-types">{service.types}</p>
+
+          {/* Bloque destacado para previsualizar y descargar el catálogo */}
+          <div className="service-catalog-card">
+            <div className="service-catalog-card-header">
+              <span className="service-catalog-badge">
+                <FileText className="size-3.5" /> CATÁLOGO TÉCNICO OFICIAL
+              </span>
+              <span className="service-catalog-format">PDF · 8 MB</span>
+            </div>
+
+            <h4 className="service-catalog-card-title">Mangueras, Terminales & Accesorios</h4>
+            <p className="service-catalog-card-desc">
+              Consultá especificaciones de roscas (BSP, NPT, JIC, ORFS, Métricas y bridas), virolas, mangueras (1SN, 2SN, 4SP, 4SH), adaptadores y acoples rápidos.
+            </p>
+
+            <div className="service-catalog-actions">
+              <a
+                href="/catalago_accesorios.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-catalog-preview"
+                title="Abrir y ver el catálogo PDF completo en una pestaña nueva"
+              >
+                <Eye className="size-4" />
+                <span>Ver catálogo en PDF</span>
+                <ArrowUpRight className="size-4 opacity-80" />
+              </a>
+
+              <a
+                href="/catalago_accesorios.pdf"
+                download="catalogo_accesorios_domarco.pdf"
+                className="btn-catalog-download"
+                title="Descargar archivo PDF directamente a tu dispositivo"
+              >
+                <Download className="size-4" />
+                <span>Descargar PDF</span>
+              </a>
+            </div>
+          </div>
+
+          <div className="service-contact-row">
+            <a href="#contacto" className="service-link" aria-label="Consultar por prensas para mangueras o insumos">
+              <ArrowUpRight className="size-5" /> Consultar por prensas o accesorios
+            </a>
+          </div>
+        </div>
+        <div className="service-feature-visual">
+          {visualByNo[service.no]}
+        </div>
+      </article>
+    )
+  }
+
   return (
     <article id={`service-${service.no}`} className={`service-feature service-feature-${service.no}`}>
       <div className="service-feature-copy">
@@ -350,7 +427,7 @@ export function DomarcoServices({ activeService, onSelectService }: DomarcoServi
       <div className="mx-auto max-w-[1480px] px-6 py-20 lg:px-12 lg:py-28">
         <div className="services-heading"><div><p className="kicker">Servicios DOMARCO</p><h2 className="section-title light">Soluciones hidráulicas<br /><span>para cada aplicación.</span></h2></div><p>Ingeniería, fabricación y respaldo técnico para acompañar cada etapa de tu operación.</p></div>
         <ServiceDirectory activeService={activeService} onSelectService={onSelectService} />
-        <div id={`service-panel-${selectedService.no}`} role="tabpanel" className="service-showcase">
+        <div id="detalle-servicio" role="tabpanel" className="service-showcase">
           <ServicePanel service={selectedService} />
         </div>
       </div>
