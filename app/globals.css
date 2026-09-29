@@ -340,9 +340,9 @@ body {
 
 .hero-title,
 .section-title {
-  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: 800;
-  letter-spacing: -.055em;
+  letter-spacing: -.02em;
   text-transform: uppercase;
 }
 
@@ -1073,10 +1073,11 @@ body {
   min-width: 0;
   margin: 18px 0 0;
   color: #121315;
-  font-size: clamp(2.2rem, 3.8vw, 4.4rem);
+  font-size: clamp(2rem, 3.3vw, 3.7rem);
   line-height: .92;
   letter-spacing: -.06em;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
   text-transform: uppercase;
 }
 
@@ -3515,11 +3516,15 @@ body {
 
 .video-row {
   display: grid;
-  grid-template-columns: .8fr 1.2fr;
-  gap: 64px;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.25fr);
+  gap: clamp(32px, 4.5vw, 64px);
   align-items: center;
   padding: 46px 0;
   border-bottom: 1px solid #c8c9ca;
+}
+
+.video-copy {
+  min-width: 0;
 }
 
 .video-copy>span {
@@ -3528,16 +3533,18 @@ body {
 }
 
 .video-copy h2 {
-  margin-top: 20px;
-  font-size: clamp(2rem, 4vw, 4.4rem);
-  line-height: .92;
-  letter-spacing: -.055em;
+  margin-top: 16px;
+  font-size: clamp(1.75rem, 2.7vw, 2.9rem);
+  line-height: .95;
+  letter-spacing: -.045em;
   text-transform: uppercase;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 .video-copy p {
-  max-width: 430px;
-  margin-top: 18px;
+  max-width: 460px;
+  margin-top: 16px;
   color: #414347;
   line-height: 1.6;
 }
@@ -3545,7 +3552,7 @@ body {
 .video-copy a {
   display: inline-flex;
   align-items: center;
-  margin-top: 26px;
+  margin-top: 24px;
   border-bottom: 1px solid #315c8d;
   padding-bottom: 8px;
   color: #315c8d;
@@ -3556,9 +3563,13 @@ body {
 }
 
 .video-frame {
+  min-width: 0;
+  width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
   background: #0b2b50;
+  border: 1px solid #b8bac0;
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.12);
 }
 
 .video-frame iframe {
@@ -3691,12 +3702,16 @@ body {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 26px;
-    padding: 34px 0;
+    gap: 22px;
+    padding: 30px 0;
   }
 
   .video-copy h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.45rem, 6.8vw, 1.95rem);
+    line-height: 1.02;
+    letter-spacing: -.035em;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .video-copy p {

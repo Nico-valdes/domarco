@@ -2,11 +2,41 @@ import { ArrowUpRight } from 'lucide-react'
 import { DomarcoSubpage, SubpageCta } from '@/components/domarco-subpage'
 
 const videos = [
-  ['07Ph0TND58c', 'Fabricación personalizada', 'Una mirada al proceso de fabricación de una prensa hidráulica diseñada para una aplicación industrial específica.'],
-  ['qkgLrHY4oS0', 'Una solución a medida', 'Trabajo realizado por DOMARCO para resolver una necesidad concreta de producción.'],
-  ['h8sVmZQrr3k', 'Reacondicionamiento', 'Recuperación y puesta a punto de una prensa para devolverla a condiciones de trabajo.'],
-  ['uRUZvDgvuw0', 'Prensa en operación', 'El resultado final: una solución hidráulica integrada al ritmo real de una planta.'],
-  ['0HQT5hCiLeU', 'Experiencia en acción', 'Trabajos realizados y la experiencia de taller que sostiene cada entrega DOMARCO.'],
+  [
+    'jmumJEFck_g',
+    'Reacondicionamiento · Prensa 120 Tn',
+    'Recuperación integral, modernización del circuito hidráulico y automatización para conformado y embutido de chapa en una prensa restaurada a nuevo.',
+  ],
+  [
+    '0HQT5hCiLeU',
+    'Fabricación · Prensa columna PCH 120',
+    'Estructura de 4 columnas rectificadas de 120 toneladas diseñada por DOMARCO para ciclos exigentes de moldeo, embutido y estampado industrial.',
+  ],
+  [
+    'G4DLQmULfWM',
+    'Fabricación · Prensa de garganta PG 20',
+    'Modelo de garganta abierta de 20 toneladas para operaciones ágiles de punzonado, corte, curvado y matricería con acceso libre frontal y lateral.',
+  ],
+  [
+    'h8sVmZQrr3k',
+    'Puesta a punto · Prensa hidráulica',
+    'Ensayos en banco de pruebas, regulación de presiones y chequeo del pupitre de comando y tablero eléctrico en una prensa pesada de 4 columnas.',
+  ],
+  [
+    '9dLmcQ4i3dI',
+    'Abrochadora de mangueras industrial',
+    'Prensado continuo de terminales de alta presión, con capacidad de compresión de hasta 500 toneladas y un régimen productivo de 200 piezas por hora.',
+  ],
+  [
+    'uRUZvDgvuw0',
+    'Prensa manual para mangueras',
+    'Equipo portátil y versátil para armado y reparación de mangueras en talleres auxiliares y servicios móviles de campo sin requerir energía trifásica.',
+  ],
+  [
+    'qkgLrHY4oS0',
+    'Cortadora y peladora de mangueras',
+    'Operación de corte preciso y desbaste perimetral (pelado exterior e interior) de mangueras de 1/4" a 2", asegurando un prensado hermético y seguro.',
+  ],
 ]
 
 export default function PrensasPage() {
