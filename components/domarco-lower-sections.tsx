@@ -1,5 +1,16 @@
-import { ArrowUpRight, ChevronRight, Phone } from 'lucide-react'
+'use client'
+
+import { useState } from 'react'
+import { ArrowUpRight, ChevronRight } from 'lucide-react'
 import { faqs, processSteps } from './domarco-data'
+
+function WhatsAppIcon({ className = 'size-4' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 32 32" fill="currentColor">
+      <path d="M16.01 2.002c-7.72 0-14 6.279-14 14 0 2.47.644 4.877 1.867 7L2 30l7.207-1.85a13.94 13.94 0 006.803 1.764h.006c7.72 0 14-6.279 14-14 0-3.74-1.456-7.257-4.102-9.902A13.916 13.916 0 0016.01 2.002zm0 25.645h-.005a11.584 11.584 0 01-5.91-1.614l-.424-.252-4.39 1.127 1.173-4.22-.276-.44a11.605 11.605 0 01-1.782-6.246c0-6.408 5.215-11.622 11.625-11.622 3.104 0 6.022 1.21 8.216 3.405a11.55 11.55 0 013.403 8.218c0 6.409-5.215 11.624-11.624 11.624zm6.37-8.705c-.349-.175-2.065-1.019-2.385-1.135-.32-.116-.553-.175-.785.175-.233.35-.901 1.135-1.105 1.368-.204.233-.407.262-.756.088-.349-.175-1.474-.544-2.808-1.733-1.038-.925-1.739-2.068-1.943-2.417-.203-.35-.022-.539.153-.713.157-.157.349-.407.523-.611.175-.204.233-.35.35-.583.116-.233.058-.437-.029-.611-.087-.175-.785-1.892-1.076-2.592-.284-.68-.572-.588-.785-.599l-.67-.012c-.232 0-.61.087-.93.437-.32.35-1.22 1.194-1.22 2.912s1.25 3.378 1.424 3.611c.174.233 2.46 3.757 5.96 5.267.832.36 1.482.574 1.989.735.836.265 1.597.228 2.198.138.67-.1 2.065-.844 2.356-1.66.291-.815.291-1.514.204-1.66-.087-.145-.32-.233-.669-.407z" />
+    </svg>
+  )
+}
 
 export function DomarcoProcess() {
   return (
@@ -45,6 +56,8 @@ export function DomarcoProcess() {
 }
 
 export function DomarcoFaq() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
   return (
     <section className="bg-[#f4f4f2] text-[#121315]">
       <div className="mx-auto max-w-[1480px] px-4 py-12 sm:px-6 sm:py-20 lg:px-12 lg:py-28 min-[961px]:grid min-[961px]:grid-cols-[minmax(300px,0.9fr)_minmax(0,1.6fr)] min-[961px]:items-start min-[961px]:gap-[clamp(48px,6vw,84px)]">
@@ -58,17 +71,30 @@ export function DomarcoFaq() {
           </h2>
         </div>
         <div className="w-full border-t border-[#c8c9ca]">
-          {faqs.map((faq) => (
-            <details key={faq.question} className="group border-b border-[#c8c9ca]">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-[1.05rem] font-medium tracking-[-0.015em] text-[#121315] transition-colors duration-200 hover:text-[#315c8d] group-open:text-[#315c8d] min-[701px]:py-6 min-[701px]:text-[clamp(1.05rem,1.8vw,1.45rem)] [&::-webkit-details-marker]:hidden">
-                <span>{faq.question}</span>
-                <ChevronRight className="size-5 shrink-0 text-[#315c8d] transition-transform duration-250 ease-out group-open:rotate-90" />
-              </summary>
-              <p className="max-w-[700px] pb-6 pr-0 text-[0.94rem] leading-[1.65] text-[#414347] min-[701px]:pr-[52px] min-[701px]:text-[0.95rem]">
-                {faq.answer}
-              </p>
-            </details>
-          ))}
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index
+            return (
+              <details
+                key={faq.question}
+                open={isOpen}
+                className="group border-b border-[#c8c9ca]"
+              >
+                <summary
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setOpenIndex(isOpen ? null : index)
+                  }}
+                  className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-[1.05rem] font-medium tracking-[-0.015em] text-[#121315] transition-colors duration-200 hover:text-[#315c8d] group-open:text-[#315c8d] min-[701px]:py-6 min-[701px]:text-[clamp(1.05rem,1.8vw,1.45rem)] [&::-webkit-details-marker]:hidden"
+                >
+                  <span>{faq.question}</span>
+                  <ChevronRight className="size-5 shrink-0 text-[#315c8d] transition-transform duration-250 ease-out group-open:rotate-90" />
+                </summary>
+                <p className="max-w-[700px] pb-6 pr-0 text-[0.94rem] leading-[1.65] text-[#414347] min-[701px]:pr-[52px] min-[701px]:text-[0.95rem]">
+                  {faq.answer}
+                </p>
+              </details>
+            )
+          })}
         </div>
       </div>
     </section>
@@ -108,9 +134,7 @@ export function DomarcoContact() {
               rel="noreferrer"
               className="inline-flex items-center justify-between gap-4 border border-[#4a4c50] px-[18px] py-4 text-[10px] font-bold uppercase tracking-[.14em] text-[#f4f4f2] transition-colors transition-transform duration-250 hover:translate-x-[5px] hover:border-[#7c9fc5] hover:text-[#7c9fc5]"
             >
-              <span className="inline-flex items-center gap-2.5">
-                <Phone className="size-4" /> Escribir por WhatsApp
-              </span>
+              Escribir por WhatsApp <WhatsAppIcon className="size-4" />
             </a>
           </div>
         </div>

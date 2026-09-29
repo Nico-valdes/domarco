@@ -6,24 +6,10 @@ import { WhatsAppButton } from '@/components/whatsapp-button'
 export const metadata: Metadata = {
   title: 'DOMARCO | Prensas hidráulicas',
   description: 'Fabricación, reacondicionamiento y servicio técnico de prensas hidráulicas industriales desde 1964.',
-  generator: 'v0.app',
   keywords: ['prensas hidráulicas', 'fabricación industrial', 'reacondicionamiento', 'DOMARCO'],
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: '/favicon.png',
+    apple: '/favicon.png',
   },
 }
 
