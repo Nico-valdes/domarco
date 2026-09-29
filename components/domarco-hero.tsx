@@ -22,7 +22,7 @@ export function DomarcoHero({ onSelectService }: DomarcoHeroProps) {
               <span className="hero-title-line">Prensas hidráulicas</span>
               <span className="hero-title-line hero-title-accent">para cada necesidad.</span>
             </h1>
-            <p className="hero-description">Fabricación a medida, reacondicionamiento y servicio técnico para resolver tus necesidades de producción con respaldo especializado.</p>
+            <p className="hero-description">Fabricamos prensas hidráulicas a medida, reacondicionamos equipos en desuso y asistimos a tu planta con repuestos y mantenimiento propio.</p>
           </div>
         </div>
         <div className="hero-card-grid">

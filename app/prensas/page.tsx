@@ -43,9 +43,9 @@ export default function PrensasPage() {
   return (
     <DomarcoSubpage
       eyebrow="Trabajos realizados · DOMARCO"
-      title="Prensas que"
-      accent="resuelven en serio."
-      intro="Una selección de videos sobre fabricación personalizada, reacondicionamiento y soluciones hidráulicas realizadas por nuestro equipo."
+      title="Máquinas y equipos"
+      accent="en funcionamiento."
+      intro="Registro en planta y banco de pruebas de prensas fabricadas, reacondicionamientos integrales y líneas para mangueras hidráulicas."
     >
       <section className="bg-[#f4f4f2] text-[#121315]">
         <div className="mx-auto max-w-[1480px] px-4 py-10 sm:px-6 sm:py-14 lg:px-12 lg:py-16">

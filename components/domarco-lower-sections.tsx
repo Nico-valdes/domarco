@@ -18,14 +18,9 @@ export function DomarcoProcess() {
       <div className="mx-auto max-w-[1480px] px-4 py-12 sm:px-6 sm:py-20 lg:px-12 lg:py-28">
         <div className="grid grid-cols-1 items-end gap-6 min-[701px]:grid-cols-[1.1fr_0.9fr] min-[701px]:gap-14">
           <div>
-            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[.25em] text-[#84d2f6]">
-              Cómo lo hacemos
-            </p>
             <h2 className="font-['Arial',sans-serif] text-[clamp(2.1rem,6.8vw,2.75rem)] font-bold uppercase leading-[0.98] tracking-[-0.03em] text-white min-[701px]:text-[clamp(2.4rem,4.2vw,4.2rem)] min-[701px]:leading-[0.95] min-[701px]:tracking-[-0.04em]">
-              Del desafío a la<br />
-              <span className="text-[#8fb4da]">
-                solución en <br className="min-[701px]:hidden" />marcha.
-              </span>
+              Cómo trabajamos<br />
+              <span className="text-[#8fb4da]">en cada proyecto.</span>
             </h2>
           </div>
           <p className="mb-1.5 max-w-[360px] text-[15px] font-normal leading-relaxed text-[#c3d0de]">
@@ -61,14 +56,29 @@ export function DomarcoFaq() {
   return (
     <section className="bg-[#f4f4f2] text-[#121315]">
       <div className="mx-auto max-w-[1480px] px-4 py-12 sm:px-6 sm:py-20 lg:px-12 lg:py-28 min-[961px]:grid min-[961px]:grid-cols-[minmax(300px,0.9fr)_minmax(0,1.6fr)] min-[961px]:items-start min-[961px]:gap-[clamp(48px,6vw,84px)]">
-        <div className="mb-10 min-w-0 min-[701px]:mb-[58px] min-[961px]:sticky min-[961px]:top-[100px] min-[961px]:mb-0">
-          <p className="mb-3.5 text-[10px] font-bold uppercase tracking-[.25em] text-[#315c8d]">
-            Preguntas frecuentes
-          </p>
-          <h2 className="font-['Arial',sans-serif] text-[clamp(2rem,2.8vw,3.25rem)] font-bold uppercase leading-[0.92] tracking-[-0.04em] text-[#121315]">
-            Lo importante,<br />
-            <span className="text-[#315c8d]">sin vueltas.</span>
+        <div className="relative mb-10 min-w-0 min-[701px]:mb-[58px] min-[961px]:sticky min-[961px]:top-[100px] min-[961px]:mb-0">
+          <h2 className="relative z-10 font-['Arial',sans-serif] text-[clamp(2rem,2.8vw,3.25rem)] font-bold uppercase leading-[0.92] tracking-[-0.04em] text-[#121315]">
+            Preguntas<br />
+            <span className="text-[#315c8d]">frecuentes.</span>
           </h2>
+
+          {/* Detalle sutil en celestito */}
+          <div className="relative z-10 mt-6 flex items-center gap-2 text-[10.5px] font-mono tracking-[.18em] uppercase text-[#315c8d]">
+            <span className="size-1.5 rounded-full bg-[#84d2f6] shadow-[0_0_8px_#84d2f6]" />
+            <span>Asesoramiento de fábrica</span>
+          </div>
+
+          <p className="relative z-10 mt-2 max-w-[280px] text-xs leading-relaxed text-[#5e636e]">
+            Criterios de fabricación, plazos y modalidades de asistencia técnica.
+          </p>
+
+          <a
+            href="#contacto"
+            className="group relative z-10 mt-5 inline-flex items-center gap-1.5 border-b border-[#315c8d]/60 pb-0.5 font-mono text-[11px] font-semibold uppercase tracking-[.12em] text-[#315c8d] transition-all duration-200 hover:border-[#121315] hover:text-[#121315]"
+          >
+            <span>Hacer una consulta puntual</span>
+            <ArrowUpRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
         </div>
         <div className="w-full border-t border-[#c8c9ca]">
           {faqs.map((faq, index) => {
@@ -111,11 +121,11 @@ export function DomarcoContact() {
               Contacto DOMARCO
             </p>
             <h2 className="mt-4 font-['Arial',sans-serif] text-[clamp(2.2rem,5vw,5rem)] font-bold uppercase leading-[.92] tracking-[-0.06em] text-[#f4f4f2] max-[700px]:text-[clamp(1.85rem,8.2vw,2.45rem)] max-[700px]:leading-[.95] max-[700px]:tracking-[-0.055em]">
-              ¿Tenés una consulta<br />
-              <span className="text-[#7c9fc5]">sobre prensas?</span>
+              ¿BUSCÁS FABRICAR O<br />
+              <span className="text-[#7c9fc5]">REPARAR UNA PRENSA?</span>
             </h2>
             <p className="mt-5 max-w-[430px] text-[0.95rem] leading-[1.55] text-[#a9aaad]">
-              Escribinos y contanos qué necesitás resolver. Te ayudamos a definir el próximo paso.
+              Contanos qué pieza fabricás o qué máquina necesitás intervenir. Te asesoramos directamente desde fábrica.
             </p>
             <p className="mt-6 text-[10px] uppercase leading-[1.4] tracking-[.08em] text-[#7c9fc5]">
               Av. Centenario 3615 · Quilmes, Buenos Aires

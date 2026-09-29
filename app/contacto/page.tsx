@@ -56,7 +56,7 @@ export default function ContactoPage() {
   return (
     <DomarcoSubpage
       eyebrow="Contacto DOMARCO"
-      title="Hablemos"
+      title="Hablanos"
       accent="de tu proyecto."
       intro="Escribinos para consultar por fabricación, reacondicionamiento, prensas usadas o servicio técnico."
       pageClassName="contact-subpage"

@@ -69,7 +69,6 @@ function Visual01() {
             backgroundPosition: 'center 25%',
           }}
         >
-          <span className="sv-chip sv-chip-sm">A medida · PG 3</span>
         </div>
       </div>
     </div>
@@ -171,7 +170,6 @@ function Visual03() {
           backgroundPosition: 'center 40%',
         }}
       >
-        <span className="sv-chip sv-chip-dark">Stock disponible · Gran capacidad</span>
       </div>
       <div className="sv-03-strip">
         <div
@@ -181,7 +179,6 @@ function Visual03() {
             backgroundPosition: 'center 35%',
           }}
         >
-          <span className="sv-chip sv-chip-sm">Revisadas en taller</span>
         </div>
         <div
           className="sv-tile"
@@ -210,9 +207,7 @@ function Visual04() {
       >
         <div className="sv-04-badge">
           <span className="sv-04-badge-no">04</span>
-          <span className="sv-04-badge-text">Diagnóstico &<br />Mantenimiento</span>
         </div>
-        <span className="sv-chip">Asistencia y montaje en planta</span>
       </div>
       <div className="sv-04-bottom">
         <div
@@ -222,7 +217,6 @@ function Visual04() {
             backgroundPosition: 'center 40%',
           }}
         >
-          <span className="sv-chip sv-chip-sm">Reparación en taller</span>
         </div>
         <div
           className="sv-tile"
@@ -231,7 +225,6 @@ function Visual04() {
             backgroundPosition: 'center',
           }}
         >
-          <span className="sv-chip sv-chip-sm">Válvulas & Manifolds</span>
         </div>
       </div>
     </div>
@@ -249,7 +242,6 @@ function Visual05() {
           backgroundPosition: 'center 40%',
         }}
       >
-        <span className="sv-chip">Línea producción con mueble</span>
       </div>
       <div className="sv-05-side">
         <div
@@ -259,7 +251,6 @@ function Visual05() {
             backgroundPosition: 'center',
           }}
         >
-          <span className="sv-chip sv-chip-sm">Modelo compacto taller</span>
         </div>
         <div
           className="sv-tile"
@@ -268,7 +259,6 @@ function Visual05() {
             backgroundPosition: 'center 40%',
           }}
         >
-          <span className="sv-chip sv-chip-sm">Juego de mordazas</span>
         </div>
       </div>
       <a
@@ -297,7 +287,6 @@ function Visual06() {
           backgroundPosition: 'center',
         }}
       >
-        <span className="sv-chip">Centrales hidráulicas DOMARCO</span>
       </div>
       <div className="sv-06-bc">
         <div
@@ -307,7 +296,6 @@ function Visual06() {
             backgroundPosition: 'center',
           }}
         >
-          <span className="sv-chip sv-chip-sm">Bloques & Válvulas</span>
         </div>
         <div
           className="sv-tile sv-06-c"
@@ -316,7 +304,6 @@ function Visual06() {
             backgroundPosition: 'center',
           }}
         >
-          <span className="sv-chip sv-chip-sm">Mini-centrales & Bombas</span>
         </div>
       </div>
     </div>
