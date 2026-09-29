@@ -66,13 +66,13 @@ export function SubpageCta() {
   return (
     <section className="bg-[#0a0a0b] text-[#f4f4f2] border-t border-[#27282b]">
       <div className="mx-auto flex flex-col min-[701px]:flex-row min-[701px]:items-center justify-between gap-8 min-[701px]:gap-12 max-w-[1480px] px-4 py-12 sm:px-6 sm:py-16 lg:px-12 lg:py-20">
-        <div className="max-w-[430px]">
+        <div className="min-w-0">
           <p className="text-[10px] font-bold tracking-[.25em] uppercase text-[#7c9fc5] m-0">Contacto DOMARCO</p>
-          <h2 className="mt-4 mb-0 text-[#f4f4f2] font-extrabold uppercase leading-[.94] tracking-[-0.05em] text-[clamp(1.95rem,3.4vw,2.85rem)] max-[700px]:text-[clamp(1.75rem,7.5vw,2.35rem)]">
+          <h2 className="mt-4 mb-0 font-['Arial',sans-serif] text-[clamp(2.2rem,5vw,5rem)] font-bold uppercase leading-[.92] tracking-[-0.06em] text-[#f4f4f2] max-[700px]:text-[clamp(1.85rem,8.2vw,2.45rem)] max-[700px]:leading-[.95] max-[700px]:tracking-[-0.055em]">
             ¿Tenés una consulta<br />
             <span className="text-[#7c9fc5]">sobre prensas?</span>
           </h2>
-          <p className="mt-5 mb-0 text-[#a9aaad] text-[0.95rem] leading-[1.55]">
+          <p className="mt-5 mb-0 max-w-[430px] text-[#a9aaad] text-[0.95rem] leading-[1.55]">
             Escribinos y contanos qué necesitás resolver. Te ayudamos a definir el próximo paso.
           </p>
         </div>
