@@ -1,30 +1,31 @@
 import type { MetadataRoute } from 'next'
-import { SITE_URL } from './seo-schema'
+
+const BASE_URL = 'https://www.domarco.com.ar'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date()
 
   return [
     {
-      url: `${SITE_URL}`,
+      url: `${BASE_URL}/`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 1.0,
     },
     {
-      url: `${SITE_URL}/prensas`,
+      url: `${BASE_URL}/prensas`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${SITE_URL}/contacto`,
+      url: `${BASE_URL}/contacto`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${SITE_URL}/historia`,
+      url: `${BASE_URL}/historia`,
       lastModified: currentDate,
       changeFrequency: 'yearly',
       priority: 0.7,
