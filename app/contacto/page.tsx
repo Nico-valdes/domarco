@@ -1,7 +1,7 @@
 'use client'
 
-import { FormEvent, useState } from 'react'
-import { ArrowRight, ArrowUpRight, Mail, MapPin, CheckCircle2 } from 'lucide-react'
+import { FormEvent, useState, useRef } from 'react'
+import { ArrowRight, ArrowUpRight, Mail, MapPin, CheckCircle2, Loader2, AlertCircle } from 'lucide-react'
 import { DomarcoSubpage } from '@/components/domarco-subpage'
 
 function WhatsAppIcon({ className = 'size-4' }: { className?: string }) {
@@ -41,16 +41,60 @@ const contactChannels = [
     icon: MapPin,
     label: 'Ubicación',
     subtext: 'Av. Centenario 3615, Quilmes',
-    href: 'https://maps.google.com/?q=Av.+Centenario+3615,+Quilmes,+Buenos+Aires',
+    href: 'https://maps.app.goo.gl/ubAeT9kB5WfuySzm6',
     external: true,
   },
 ]
 
 export default function ContactoPage() {
+  const formRef = useRef<HTMLFormElement>(null)
+  const [loading, setLoading] = useState(false)
   const [sent, setSent] = useState(false)
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    setSent(true)
+    setLoading(true)
+    setErrorMessage(null)
+
+    const formData = new FormData(event.currentTarget)
+    const payload = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      phone: formData.get('phone') || undefined,
+      message: formData.get('message'),
+    }
+
+    try {
+      const response = await fetch('/api/contacto', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Ocurrió un error al enviar el formulario.')
+      }
+
+      if (data.previewUrl) {
+        setPreviewUrl(data.previewUrl)
+      } else {
+        setPreviewUrl(null)
+      }
+
+      setSent(true)
+      formRef.current?.reset()
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'No se pudo enviar la consulta.'
+      setErrorMessage(msg)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -126,57 +170,131 @@ export default function ContactoPage() {
 
           <form
             id="formulario"
+            ref={formRef}
             onSubmit={handleSubmit}
             className="flex min-w-0 max-w-full flex-col gap-6 border border-[#c8c9ca] bg-white p-8 sm:p-10 lg:p-12 shadow-[10px_10px_0_#dfe3e7] max-[700px]:w-full max-[700px]:gap-4 max-[700px]:p-6 max-[700px]:shadow-[6px_6px_0_#dfe3e7]"
           >
             <p className="text-[10px] font-bold uppercase tracking-[.25em] text-[#315c8d] mb-1">Formulario de contacto</p>
-            <label className="flex min-w-0 flex-col gap-2 text-[10px] font-bold uppercase tracking-[.12em] text-[#414347] max-[700px]:text-[9.5px]">
-              Nombre
-              <input
-                name="name"
-                required
-                placeholder="Tu nombre o empresa"
-                className="w-full min-w-0 rounded-none border-0 border-b border-[#b9bdc1] bg-transparent py-3 px-0 font-normal text-base text-[#121315] outline-none transition-colors focus:border-[#315c8d] placeholder:font-normal placeholder:text-[#9ea3a9] max-[700px]:py-2 max-[700px]:text-[15px]"
-              />
-            </label>
-            <label className="flex min-w-0 flex-col gap-2 text-[10px] font-bold uppercase tracking-[.12em] text-[#414347] max-[700px]:text-[9.5px]">
-              Email
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="tu@email.com"
-                className="w-full min-w-0 rounded-none border-0 border-b border-[#b9bdc1] bg-transparent py-3 px-0 font-normal text-base text-[#121315] outline-none transition-colors focus:border-[#315c8d] placeholder:font-normal placeholder:text-[#9ea3a9] max-[700px]:py-2 max-[700px]:text-[15px]"
-              />
-            </label>
-            <label className="flex min-w-0 flex-col gap-2 text-[10px] font-bold uppercase tracking-[.12em] text-[#414347] max-[700px]:text-[9.5px]">
-              Consulta
-              <textarea
-                name="message"
-                required
-                rows={3}
-                placeholder="¿Qué prensas o trabajo necesitás cotizar?"
-                className="w-full min-w-0 resize-y rounded-none border-0 border-b border-[#b9bdc1] bg-transparent py-3 px-0 font-normal text-base text-[#121315] outline-none transition-colors focus:border-[#315c8d] placeholder:font-normal placeholder:text-[#9ea3a9] max-[700px]:py-2 max-[700px]:text-[15px]"
-              />
-            </label>
-            <button
-              type="submit"
-              className="mt-3 inline-flex self-start cursor-pointer items-center border-0 bg-[#121315] px-5 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-[#315c8d] max-[700px]:w-full max-[700px]:justify-center"
-            >
-              {sent ? (
-                <>
-                  <CheckCircle2 className="mr-2 size-4 text-emerald-300" /> Consulta registrada
-                </>
-              ) : (
-                <>
-                  Enviar consulta <ArrowUpRight className="ml-2 size-4" />
-                </>
-              )}
-            </button>
-            {sent && (
-              <p className="mt-2.5 font-mono text-xs tracking-[0.05em] text-[#0c7e5a]">
-                Gracias por contactarte. Te responderemos a la brevedad.
-              </p>
+
+            {sent ? (
+              <div className="flex flex-col gap-4 py-4">
+                <div className="flex items-center gap-3 border-l-4 border-[#0c7e5a] bg-[#f0faf5] p-5">
+                  <CheckCircle2 className="size-6 text-[#0c7e5a] shrink-0" />
+                  <div>
+                    <h3 className="text-sm font-bold uppercase tracking-[.08em] text-[#0a4a35]">
+                      Consulta enviada con éxito
+                    </h3>
+                    <p className="mt-1 text-xs text-[#2b614f] leading-relaxed">
+                      Recibimos tu mensaje en <span className="font-semibold text-[#0a4a35]">info@domarco.com.ar</span>. Nuestro equipo técnico se pondrá en contacto a la brevedad.
+                    </p>
+                  </div>
+                </div>
+
+                {previewUrl && (
+                  <div className="flex flex-col gap-2.5 border border-[#315c8d]/30 bg-[#f0f6fc] p-4 text-xs">
+                    <div className="flex items-center gap-2">
+                      <span className="size-2 rounded-full bg-[#315c8d] animate-pulse" />
+                      <span className="font-mono text-[10.5px] font-bold uppercase tracking-[.1em] text-[#315c8d]">
+                        Bandeja de pruebas (Ethereal Email)
+                      </span>
+                    </div>
+                    <p className="text-[#3c4a57] leading-relaxed">
+                      El correo fue interceptado en el buzón virtual de prueba para que puedas revisar su diseño, colores y logo:
+                    </p>
+                    <a
+                      href={previewUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-1 inline-flex self-start items-center gap-2 bg-[#315c8d] px-4 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[.12em] text-white hover:bg-[#121315] transition-colors"
+                    >
+                      <span>Abrir vista previa del correo</span>
+                      <ArrowUpRight className="size-3.5" />
+                    </a>
+                  </div>
+                )}
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSent(false)
+                    setPreviewUrl(null)
+                  }}
+                  className="mt-2 inline-flex self-start cursor-pointer items-center border border-[#121315] bg-transparent px-4 py-2 text-xs font-semibold uppercase tracking-[.1em] text-[#121315] transition-colors hover:bg-[#121315] hover:text-white"
+                >
+                  Enviar otra consulta
+                </button>
+              </div>
+            ) : (
+              <>
+                <label className="flex min-w-0 flex-col gap-2 text-[10px] font-bold uppercase tracking-[.12em] text-[#414347] max-[700px]:text-[9.5px]">
+                  Nombre o empresa
+                  <input
+                    name="name"
+                    required
+                    disabled={loading}
+                    placeholder="Ingresá tu nombre o empresa"
+                    className="w-full min-w-0 rounded-none border-0 border-b border-[#b9bdc1] bg-transparent py-3 px-0 font-normal text-base text-[#121315] outline-none transition-colors focus:border-[#315c8d] disabled:opacity-50 placeholder:font-normal placeholder:text-[#9ea3a9] max-[700px]:py-2 max-[700px]:text-[15px]"
+                  />
+                </label>
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                  <label className="flex min-w-0 flex-col gap-2 text-[10px] font-bold uppercase tracking-[.12em] text-[#414347] max-[700px]:text-[9.5px]">
+                    Email
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      disabled={loading}
+                      placeholder="ejemplo@correo.com"
+                      className="w-full min-w-0 rounded-none border-0 border-b border-[#b9bdc1] bg-transparent py-3 px-0 font-normal text-base text-[#121315] outline-none transition-colors focus:border-[#315c8d] disabled:opacity-50 placeholder:font-normal placeholder:text-[#9ea3a9] max-[700px]:py-2 max-[700px]:text-[15px]"
+                    />
+                  </label>
+                  <label className="flex min-w-0 flex-col gap-2 text-[10px] font-bold uppercase tracking-[.12em] text-[#414347] max-[700px]:text-[9.5px]">
+                    Teléfono / WhatsApp (opcional)
+                    <input
+                      type="tel"
+                      name="phone"
+                      disabled={loading}
+                      placeholder="+54 9 11 ..."
+                      className="w-full min-w-0 rounded-none border-0 border-b border-[#b9bdc1] bg-transparent py-3 px-0 font-normal text-base text-[#121315] outline-none transition-colors focus:border-[#315c8d] disabled:opacity-50 placeholder:font-normal placeholder:text-[#9ea3a9] max-[700px]:py-2 max-[700px]:text-[15px]"
+                    />
+                  </label>
+                </div>
+                <label className="flex min-w-0 flex-col gap-2 text-[10px] font-bold uppercase tracking-[.12em] text-[#414347] max-[700px]:text-[9.5px]">
+                  Consulta
+                  <textarea
+                    name="message"
+                    required
+                    disabled={loading}
+                    rows={3}
+                    placeholder="Describí brevemente tu consulta o requerimiento..."
+                    className="w-full min-w-0 resize-y rounded-none border-0 border-b border-[#b9bdc1] bg-transparent py-3 px-0 font-normal text-base text-[#121315] outline-none transition-colors focus:border-[#315c8d] disabled:opacity-50 placeholder:font-normal placeholder:text-[#9ea3a9] max-[700px]:py-2 max-[700px]:text-[15px]"
+                  />
+                </label>
+
+                {errorMessage && (
+                  <div className="flex items-center gap-2 border-l-4 border-red-500 bg-red-50 p-3 text-xs text-red-700">
+                    <AlertCircle className="size-4 shrink-0" />
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="mt-3 inline-flex self-start cursor-pointer items-center border-0 bg-[#121315] px-6 py-3.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-[#315c8d] disabled:cursor-not-allowed disabled:opacity-70 max-[700px]:w-full max-[700px]:justify-center"
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="mr-2 size-4 animate-spin text-white" />
+                      Enviando consulta...
+                    </>
+                  ) : (
+                    <>
+                      Enviar consulta <ArrowUpRight className="ml-2 size-4" />
+                    </>
+                  )}
+                </button>
+              </>
             )}
           </form>
         </div>
