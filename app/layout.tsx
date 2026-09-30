@@ -54,7 +54,7 @@ export const metadata: Metadata = {
       'Fabricación a medida, reacondicionamiento integral y servicio técnico de prensas hidráulicas industriales en Quilmes, Buenos Aires desde 1964.',
     images: [
       {
-        url: '/images/reacondicionamiento1.png',
+        url: '/images/reacondicionamiento1.jpg',
         width: 1200,
         height: 630,
         alt: 'DOMARCO - Fabricación y Reacondicionamiento de Prensas Hidráulicas',
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     title: 'DOMARCO | Prensas Hidráulicas Industriales',
     description:
       'Fabricación a medida y servicio técnico especializado de prensas hidráulicas industriales en Argentina.',
-    images: ['/images/reacondicionamiento1.png'],
+    images: ['/images/reacondicionamiento1.jpg'],
   },
   robots: {
     index: true,

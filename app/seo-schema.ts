@@ -13,7 +13,7 @@ export const organizationJsonLd = {
     url: `${SITE_URL}/logo_domarco.png`,
     caption: 'DOMARCO Prensas Hidráulicas Industriales',
   },
-  image: `${SITE_URL}/images/reacondicionamiento1.png`,
+  image: `${SITE_URL}/images/reacondicionamiento1.jpg`,
   description:
     'Fabricación, reacondicionamiento, venta y servicio técnico de prensas hidráulicas industriales y equipos hidráulicos en Argentina desde 1964.',
   foundingDate: '1964',
@@ -56,7 +56,7 @@ export const localBusinessJsonLd = {
   '@type': ['LocalBusiness', 'IndustrialBusiness'],
   '@id': `${SITE_URL}/#localbusiness`,
   name: 'DOMARCO Prensas Hidráulicas',
-  image: `${SITE_URL}/images/reacondicionamiento1.png`,
+  image: `${SITE_URL}/images/reacondicionamiento1.jpg`,
   url: SITE_URL,
   telephone: '+54-9-11-3691-2384',
   email: 'info@domarco.com.ar',

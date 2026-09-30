@@ -239,12 +239,12 @@ body {
 }
 
 .hero-image-1 {
-    background-image: linear-gradient(135deg, rgba(7, 59, 91, .42), rgba(111, 190, 238, .13)), url('/images/encolumna2.jpeg');
+    background-image: linear-gradient(135deg, rgba(7, 59, 91, .42), rgba(111, 190, 238, .13)), url('/images/encolumna2.jpg');
     background-position: center 35%;
 }
 
 .hero-image-2 {
-    background-image: linear-gradient(135deg, rgba(7, 59, 91, .34), rgba(20, 121, 201, .1)), url('/images/reacondicionamiento1.png');
+    background-image: linear-gradient(135deg, rgba(7, 59, 91, .34), rgba(20, 121, 201, .1)), url('/images/reacondicionamiento1.jpg');
     background-position: center 40%;
 }
 
@@ -797,12 +797,12 @@ body {
 }
 
 .hero-image-1 {
-    background-image: url('/images/encolumna2.jpeg');
+    background-image: url('/images/encolumna2.jpg');
     background-position: center 35%;
 }
 
 .hero-image-2 {
-    background-image: url('/images/reacondicionamiento1.png');
+    background-image: url('/images/reacondicionamiento1.jpg');
     background-position: center 40%;
 }
 

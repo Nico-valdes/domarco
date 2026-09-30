@@ -11,19 +11,19 @@ export const serviceLayouts: Record<string, string> = {
 
 export const servicePhotos = {
   fabricacion: {
-    columna: '/images/encolumna2.jpeg',
-    garganta15: '/images/fabricacion2.jpeg?v=2',
-    garganta3: '/images/fabricacion1.jpeg?v=2',
+    columna: '/images/encolumna2.jpg',
+    garganta15: '/images/fabricacion2.jpg?v=2',
+    garganta3: '/images/fabricacion1.jpg?v=2',
     taller: '/images/prensa%20de%20taller.jpeg',
   },
   reacondicionamiento: {
     antes: '/images/reacondicionamiento2.jpeg',
-    despues: '/images/reacondicionamiento1.png',
+    despues: '/images/reacondicionamiento1.jpg',
   },
   usadas: {
-    principal: '/images/reacondicionada1.jpeg',
-    stockVerde: '/images/prensa_usada1.jpeg',
-    reacondicionadaDomarco: '/images/reacondicionada2.jpeg',
+    principal: '/images/reacondicionada1.jpg',
+    stockVerde: '/images/prensa_usada1.jpg',
+    reacondicionadaDomarco: '/images/reacondicionada2.jpg',
   },
   servicioTecnico: {
     plantaGrua: '/images/prensatecnico.jpeg',
@@ -31,34 +31,34 @@ export const servicePhotos = {
     valvulas: '/images/boton_equipos2.jpeg',
   },
   mangueras: {
-    muebleProduccion: '/images/fabricacion4.jpeg',
+    muebleProduccion: '/images/fabricacion4.jpg',
     compactaBanco: '/images/fabricacion5.jpeg',
     mordazas: '/images/prensatecnico.jpeg',
   },
   equipos: {
-    central: '/images/boton_equipos1.jpeg',
+    central: '/images/boton_equipos1.jpg',
     valvulas: '/images/boton_equipos2.jpeg',
     miniCentral: '/images/boton_equipos3.jpeg',
   },
 }
 
 export const serviceThumbnails: Record<string, string> = {
-  '01': '/images/encolumna2.jpeg',
-  '02': '/images/reacondicionamiento1.png',
-  '03': '/images/reacondicionada1.jpeg',
+  '01': '/images/encolumna2.jpg',
+  '02': '/images/reacondicionamiento1.jpg',
+  '03': '/images/reacondicionada1.jpg',
   '04': '/images/prensatecnico.jpeg',
-  '05': '/images/fabricacion4.jpeg',
-  '06': '/images/boton_equipos1.jpeg',
+  '05': '/images/fabricacion4.jpg',
+  '06': '/images/boton_equipos1.jpg',
 }
 
 export const serviceImages = [
-  '/images/encolumna2.jpeg',
-  '/images/reacondicionamiento1.png',
+  '/images/encolumna2.jpg',
+  '/images/reacondicionamiento1.jpg',
   '/images/reacondicionamiento2.jpeg',
   '/images/prensatecnico.jpeg',
-  '/images/fabricacion4.jpeg',
-  '/images/reacondicionada1.jpeg',
-  '/images/boton_equipos1.jpeg',
+  '/images/fabricacion4.jpg',
+  '/images/reacondicionada1.jpg',
+  '/images/boton_equipos1.jpg',
 ]
 
 export const services = [
