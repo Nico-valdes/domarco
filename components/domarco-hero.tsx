@@ -15,14 +15,14 @@ export function DomarcoHero({ onSelectService }: DomarcoHeroProps) {
           <div className="hero-heading-copy">
             <div className="hero-brand-line">
               <span className="hero-brand-line-mark" />
-              <span>DOMARCO / 1964—2026</span>
+              <span>DOMARCO / FABRICACIÓN Y REACONDICIONAMIENTO DESDE 1964</span>
             </div>
-            <p className="blue-kicker">DOMARCO / PRENSAS HIDRÁULICAS</p>
+            <p className="blue-kicker">DOMARCO / PRENSAS HIDRÁULICAS INDUSTRIALES</p>
             <h1 className="hero-cards-title">
               <span className="hero-title-line">Prensas hidráulicas</span>
-              <span className="hero-title-line hero-title-accent">para cada necesidad.</span>
+              <span className="hero-title-line hero-title-accent">industriales a medida.</span>
             </h1>
-            <p className="hero-description">Fabricamos prensas hidráulicas a medida, reacondicionamos equipos en desuso y asistimos a tu planta con repuestos y mantenimiento propio.</p>
+            <p className="hero-description">Fabricamos prensas hidráulicas de columna y de garganta a medida, reacondicionamos equipos pesados y brindamos servicio técnico especializado en planta y taller propio en Quilmes, Buenos Aires.</p>
           </div>
         </div>
         <div className="hero-card-grid">

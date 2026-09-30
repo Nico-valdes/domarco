@@ -1,7 +1,25 @@
+import type { Metadata } from 'next'
 import { ArrowUpRight } from 'lucide-react'
 import { DomarcoSubpage, SubpageCta } from '@/components/domarco-subpage'
+import { generateBreadcrumbJsonLd, generateVideosJsonLd } from '../seo-schema'
 
-const videos = [
+export const metadata: Metadata = {
+  title: 'Prensas Hidráulicas en Funcionamiento',
+  description:
+    'Videos en banco de pruebas y planta de prensas hidráulicas de columna y de garganta fabricadas por DOMARCO, reacondicionamientos de 120 Tn y abrochadoras industriales.',
+  alternates: {
+    canonical: '/prensas',
+  },
+  openGraph: {
+    title: 'Máquinas y Prensas en Funcionamiento | DOMARCO',
+    description:
+      'Videos reales de prensas hidráulicas industriales y equipos para mangueras fabricados y reacondicionados en Quilmes, Argentina.',
+    url: '/prensas',
+    type: 'website',
+  },
+}
+
+const videos: [string, string, string][] = [
   [
     'jmumJEFck_g',
     'Reacondicionamiento · Prensa 120 Tn',
@@ -40,13 +58,28 @@ const videos = [
 ]
 
 export default function PrensasPage() {
+  const videosJsonLd = generateVideosJsonLd(videos)
+  const breadcrumbJsonLd = generateBreadcrumbJsonLd([
+    { name: 'Inicio', url: '/' },
+    { name: 'Prensas y Máquinas', url: '/prensas' },
+  ])
+
   return (
-    <DomarcoSubpage
-      eyebrow="Trabajos realizados · DOMARCO"
-      title="Máquinas y equipos"
-      accent="en funcionamiento."
-      intro="Registro en planta y banco de pruebas de prensas fabricadas, reacondicionamientos integrales y líneas para mangueras hidráulicas."
-    >
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(videosJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <DomarcoSubpage
+        eyebrow="Trabajos realizados · DOMARCO"
+        title="Máquinas y equipos"
+        accent="en funcionamiento."
+        intro="Registro en planta y banco de pruebas de prensas fabricadas, reacondicionamientos integrales y líneas para mangueras hidráulicas."
+      >
       <section className="bg-[#f4f4f2] text-[#121315]">
         <div className="mx-auto max-w-[1480px] px-4 py-10 sm:px-6 sm:py-14 lg:px-12 lg:py-16">
           <div className="border-t-2 border-[#315c8d]">
@@ -91,5 +124,6 @@ export default function PrensasPage() {
       </section>
       <SubpageCta />
     </DomarcoSubpage>
+    </>
   )
 }

@@ -127,13 +127,20 @@ export function DomarcoContact() {
             <p className="mt-5 max-w-[430px] text-[0.95rem] leading-[1.55] text-[#a9aaad]">
               Contanos qué pieza fabricás o qué máquina necesitás intervenir. Te asesoramos directamente desde fábrica.
             </p>
-            <p className="mt-6 text-[10px] uppercase leading-[1.4] tracking-[.08em] text-[#7c9fc5]">
+            <a
+              href="https://maps.app.goo.gl/ubAeT9kB5WfuySzm6"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Ver ubicación de fábrica DOMARCO en Google Maps: Av. Centenario 3615, Quilmes"
+              className="mt-6 inline-block text-[10px] uppercase leading-[1.4] tracking-[.08em] text-[#7c9fc5] transition-colors hover:text-white hover:underline"
+            >
               Av. Centenario 3615 · Quilmes, Buenos Aires
-            </p>
+            </a>
           </div>
           <div className="flex w-full flex-col gap-3 min-[701px]:w-auto min-[701px]:min-w-[260px]">
             <a
               href="/contacto"
+              aria-label="Ir a la página de contacto y solicitar cotización de prensas DOMARCO"
               className="inline-flex items-center justify-between gap-4 bg-[#7c9fc5] px-[18px] py-4 text-[10px] font-bold uppercase tracking-[.14em] text-[#0a0a0b] transition-transform duration-250 hover:translate-x-[5px]"
             >
               Ir a contacto <ArrowUpRight className="size-4" />
@@ -141,7 +148,8 @@ export function DomarcoContact() {
             <a
               href="https://wa.me/5491136912384"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
+              aria-label="Contactar a DOMARCO directamente por WhatsApp al +54 9 11 3691-2384"
               className="inline-flex items-center justify-between gap-4 border border-[#4a4c50] px-[18px] py-4 text-[10px] font-bold uppercase tracking-[.14em] text-[#f4f4f2] transition-colors transition-transform duration-250 hover:translate-x-[5px] hover:border-[#7c9fc5] hover:text-[#7c9fc5]"
             >
               Escribir por WhatsApp <WhatsAppIcon className="size-4" />
