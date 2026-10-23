@@ -21,14 +21,51 @@ export const servicePhotos = {
     despues: '/images/reacondicionamiento1.jpg',
   },
   usadas: {
-    principal: '/images/reacondicionada1.jpg',
-    stockVerde: '/images/prensa_usada1.jpg',
-    reacondicionadaDomarco: '/images/reacondicionada2.jpg',
+    principal: '/fotos/prensa_usada1.jpg',
+    stockVerde: '/fotos/prensa_usada1.jpg',
+    reacondicionadaDomarco: '/fotos/prensa_usada3.jpeg',
+    items: [
+      {
+        id: '01',
+        src: '/fotos/prensa_usada1.jpg',
+        title: 'Prensa de columnas',
+        badge: 'En stock · Entrega inmediata',
+        desc: 'Estructura robusta de columnas, bancada reforzada y cilindro testeado bajo presión.',
+      },
+      {
+        id: '02',
+        src: '/fotos/prensa_usada2.jpeg',
+        title: 'Prensa de bastidor pesado',
+        badge: 'Disponible en taller',
+        desc: 'Construcción pesada para operaciones continuas de alta exigencia.',
+      },
+      {
+        id: '03',
+        src: '/fotos/prensa_usada3.jpeg',
+        title: 'Prensa de 4 columnas',
+        badge: 'Garantía DOMARCO',
+        desc: 'Platos rectificados, sellos nuevos y central hidráulica reacondicionada.',
+      },
+      {
+        id: '04',
+        src: '/fotos/prensa_usada4.jpeg',
+        title: 'Prensa vertical de taller',
+        badge: 'Lista para producir',
+        desc: 'Equipo versátil para mantenimiento, armado y embutido ligero.',
+      },
+      {
+        id: '05',
+        src: '/fotos/prensa_usada5.jpeg',
+        title: 'Prensa compacta industrial',
+        badge: 'Reacondicionada 100%',
+        desc: 'Dimensiones optimizadas con excelente fuerza y precisión en carrera.',
+      },
+    ],
   },
   servicioTecnico: {
     plantaGrua: '/images/prensatecnico.jpeg',
     taller: '/images/prensa%20de%20taller.jpeg',
-    valvulas: '/images/boton_equipos2.jpeg',
+    valvulas: '/images/serviciotecnico.jpg',
   },
   mangueras: {
     muebleProduccion: '/images/fabricacion4.jpg',
@@ -45,7 +82,7 @@ export const servicePhotos = {
 export const serviceThumbnails: Record<string, string> = {
   '01': '/images/encolumna2.jpg',
   '02': '/images/reacondicionamiento1.jpg',
-  '03': '/images/reacondicionada1.jpg',
+  '03': '/fotos/prensa_usada1.jpg',
   '04': '/images/prensatecnico.jpeg',
   '05': '/images/fabricacion4.jpg',
   '06': '/images/boton_equipos1.jpg',
@@ -57,16 +94,16 @@ export const serviceImages = [
   '/images/reacondicionamiento2.jpeg',
   '/images/prensatecnico.jpeg',
   '/images/fabricacion4.jpg',
-  '/images/reacondicionada1.jpg',
+  '/fotos/prensa_usada1.jpg',
   '/images/boton_equipos1.jpg',
 ]
 
 export const services = [
   { no: '01', title: 'Fabricación de prensas', label: 'Diseño y fabricación', description: 'Diseñamos equipos para moldeo de caucho, embutido de chapa, fabricación de cerámica, estampado, punzonado y corte, forjado, acuñado, laminado, plegado de chapa y otras aplicaciones industriales.', types: 'De columna · De garganta · Otras configuraciones' },
   { no: '02', title: 'Reacondicionamiento', label: 'Refreshing de equipos', description: 'Reacondicionamos prensas hidráulicas usadas, recuperando y actualizando sus componentes para devolverlas a condiciones óptimas de trabajo.', types: 'Evaluación · Recuperación · Actualización' },
-  { no: '03', title: 'Prensas usadas', label: 'Equipos listos para producir', description: 'Contamos con prensas usadas reacondicionadas disponibles para la venta, revisadas para volver a integrarse a una operación industrial.', types: 'Stock disponible · Equipos revisados' },
+  { no: '03', title: 'Venta de prensas usadas', label: 'Equipos listos para producir', description: 'Contamos con prensas usadas reacondicionadas disponibles para la venta, revisadas para volver a integrarse a una operación industrial.', types: 'Stock disponible · Equipos revisados' },
   { no: '04', title: 'Servicio técnico', label: 'Respaldo para tu operación', description: 'Brindamos servicio técnico especializado en prensas hidráulicas: diagnóstico, reparación, mantenimiento y puesta a punto.', types: 'En nuestro taller · Asistencia en planta' },
-  { no: '05', title: 'Prensas para mangueras', label: 'Armado de mangueras y terminales', description: 'Prensas hidráulicas para el armado de mangueras y terminales, disponibles en distintos modelos y capacidades según el diámetro y tipo de aplicación.', types: 'Taller · Servicio móvil · Producción' },
+  { no: '05', title: 'Prensas para mangueras', label: 'venta de abrochadoras, mangueras y accesorios', description: 'Venta de abrochadoras hidráulicas para el crimpado de mangueras hidráulicas y terminales, equipos nuevos y usados, con capacidad de trabajo desde 1/4" hasta 2" y presiones de hasta 400 bar.', types: 'Taller · Servicio móvil · Producción' },
   { no: '06', title: 'Equipos hidráulicos', label: 'Componentes y soluciones', description: 'Equipos y componentes hidráulicos para aplicaciones industriales: centrales hidráulicas, cilindros, bombas y soluciones adaptadas a las necesidades de cada trabajo.', types: 'Centrales · Cilindros · Bombas' },
 ]
 

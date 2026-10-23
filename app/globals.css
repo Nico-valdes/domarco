@@ -1092,6 +1092,102 @@ body {
   margin-top: 6px;
 }
 
+/* ─── 03 VENTA DE PRENSAS USADAS: Tarjeta técnica & Acciones ─── */
+.service-usadas-card {
+  margin-top: 24px;
+  padding: 20px 22px;
+  background: #f7f9fb;
+  border: 1px solid #c9d5e3;
+  border-left: 4px solid #315c8d;
+  box-shadow: 0 4px 16px -4px rgba(18, 55, 95, 0.08);
+}
+
+.service-usadas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 18px;
+  margin-bottom: 18px;
+}
+
+.service-usadas-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-usadas-item-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #121315;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-bottom: 3px;
+}
+
+.service-usadas-item p {
+  margin: 0;
+  color: #515459;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.service-usadas-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid #e0e5eb;
+}
+
+.btn-usadas-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #25d366;
+  color: #ffffff !important;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 3px;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-usadas-wa:hover {
+  background: #1eb956;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45);
+}
+
+.btn-usadas-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  background: #eaf0f6;
+  color: #1c446e !important;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid #c0d3e5;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.btn-usadas-contact:hover {
+  background: #d8e5f2;
+  color: #0a2747 !important;
+  border-color: #315c8d;
+}
+
 .sv-05-catalog-badge {
   position: absolute;
   top: 12px;
@@ -1558,21 +1654,251 @@ body {
   backdrop-filter: blur(4px);
 }
 
-/* 03 Prensas usadas: 60% hero + 40% 2 thumbs bottom */
-.sv-03 {
-  display: grid;
-  grid-template-rows: 1.45fr 1fr;
-  grid-template-columns: 1fr;
-  gap: 3px;
-  background: #101113;
+/* ─── 03 VENTA DE PRENSAS USADAS: Galería vertical de 5 unidades ─── */
+.service-feature-visual-usadas {
+  width: 100%;
+  max-width: 580px;
+  aspect-ratio: 16 / 13.5;
+  max-height: min(520px, 68vh);
+  background: #070d14;
+  border: 1px solid #233547;
+  border-radius: 4px;
+  box-shadow: 0 16px 36px -12px rgba(6, 26, 51, 0.4);
+  overflow: hidden;
 }
 
-.sv-03-strip {
+.sv-03 {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1.48fr) minmax(0, 1fr);
+  gap: 6px;
+  padding: 6px;
+  background: #080e16;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Hero vertical principal */
+.sv-03-hero-wrap {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: #04080c;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sv-03-hero {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.sv-03-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 14, 25, 0.5) 0%,
+    rgba(5, 14, 25, 0.05) 35%,
+    rgba(5, 14, 25, 0.15) 55%,
+    rgba(5, 14, 25, 0.95) 100%
+  );
+  pointer-events: none;
+}
+
+.sv-03-hero-caption {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
   gap: 3px;
+  background: linear-gradient(180deg, rgba(6, 26, 51, 0) 0%, rgba(6, 18, 33, 0.9) 25%, rgba(6, 18, 33, 0.98) 100%);
+  padding: 14px 10px 8px;
+  border-radius: 4px;
+}
+
+.sv-03-caption-id {
+  color: #7cb8ef;
+  font: 700 9px/1 monospace;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.sv-03-caption-title {
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+}
+
+.sv-03-ask-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 5px;
+  padding: 8px 11px;
+  background: #17324f;
+  border: 1px solid #315c8d;
+  color: #ffffff !important;
+  font: 700 9.5px/1 monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.sv-03-ask-btn:hover {
+  background: #315c8d;
+  border-color: #6da2db;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+.sv-03-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  background: rgba(6, 26, 51, 0.85);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 4;
+  transition: all 0.2s ease;
+}
+
+.sv-03-nav-btn:hover {
+  background: #315c8d;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.sv-03-nav-prev {
+  left: 8px;
+}
+
+.sv-03-nav-next {
+  right: 8px;
+}
+
+/* Columna lateral de las 5 miniaturas verticales */
+.sv-03-thumbs-col {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  background: #0b1219;
+  border: 1px solid #1c2b3a;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.sv-03-thumbs-header {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  background: #070d14;
+  border-bottom: 1px solid #1c2b3a;
+  color: #7cb8ef;
+  font: 700 9px/1 monospace;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.sv-03-thumbs-list {
+  display: grid;
+  grid-template-rows: repeat(5, minmax(0, 1fr));
+  gap: 3px;
+  padding: 4px;
+  flex: 1;
   min-height: 0;
 }
+
+.sv-03-thumb-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 6px;
+  background: #0f1822;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.18s ease;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.sv-03-thumb-item:hover {
+  background: #172433;
+  border-color: rgba(124, 184, 239, 0.35);
+}
+
+.sv-03-thumb-item.is-active {
+  background: #14283d;
+  border-color: #315c8d;
+  box-shadow: inset 0 0 0 1px #315c8d;
+}
+
+.sv-03-thumb-img {
+  width: 36px;
+  height: 100%;
+  min-height: 42px;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.sv-03-thumb-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.sv-03-thumb-no {
+  color: #7cb8ef;
+  font: 700 8.5px/1 monospace;
+  letter-spacing: .1em;
+}
+
+.sv-03-thumb-title {
+  color: #dbe4ee;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sv-03-thumb-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #315c8d;
+}
+
 
 /* 04 Servicio técnico: 60% hero + 40% 2 thumbs + badge */
 .sv-04 {
@@ -1972,7 +2298,80 @@ body {
     font-size: 10px;
   }
 
+  /* Usadas adaptaciones mobile */
+  .service-usadas-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
 
+  .service-usadas-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-usadas-wa,
+  .btn-usadas-contact {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .service-feature-visual-usadas {
+    max-width: 100%;
+    aspect-ratio: auto;
+    height: 440px;
+  }
+
+  .sv-03 {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 64px;
+    gap: 4px;
+    padding: 4px;
+  }
+
+  .sv-03-thumbs-header {
+    display: none;
+  }
+
+  .sv-03-thumbs-col {
+    background: transparent;
+    border: 0;
+  }
+
+  .sv-03-thumbs-list {
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 4px;
+    padding: 0;
+  }
+
+  .sv-03-thumb-item {
+    padding: 0;
+    justify-content: center;
+  }
+
+  .sv-03-thumb-img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+  }
+
+  .sv-03-thumb-info {
+    display: none;
+  }
+
+  .sv-lightbox-footer {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .sv-lightbox-cta {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 @media (max-width: 380px) {

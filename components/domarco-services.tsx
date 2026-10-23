@@ -1,7 +1,15 @@
 'use client'
 
 import { useState, useRef, useCallback } from 'react'
-import { ArrowUpRight, Download, Eye, FileText } from 'lucide-react'
+import {
+  ArrowUpRight,
+  ChevronLeft,
+  ChevronRight,
+  Download,
+  Eye,
+  FileText,
+  MessageCircle,
+} from 'lucide-react'
 import { servicePhotos, serviceThumbnails, services, type Service } from './domarco-data'
 
 type DomarcoServicesProps = {
@@ -159,35 +167,108 @@ function Visual02() {
   )
 }
 
-// ─── 03 PRENSAS USADAS ── catálogo: hero superior + 2 thumbs inferiores
+// ─── 03 VENTA DE PRENSAS USADAS ── Galería vertical de 5 unidades en stock
 function Visual03() {
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const photos = servicePhotos.usadas.items
+  const currentPhoto = photos[selectedIndex] || photos[0]
+
+  const nextPhoto = useCallback(() => {
+    setSelectedIndex((prev) => (prev + 1) % photos.length)
+  }, [photos.length])
+
+  const prevPhoto = useCallback(() => {
+    setSelectedIndex((prev) => (prev - 1 + photos.length) % photos.length)
+  }, [photos.length])
+
+  const waUrl = `https://wa.me/5491136912384?text=${encodeURIComponent(
+    `Hola DOMARCO, quisiera consultar por la prensa usada Unidad ${currentPhoto.id} (${currentPhoto.title})`
+  )}`
+
   return (
-    <div className="sv sv-03" aria-label="Prensas usadas en stock" role="img">
-      <div
-        className="sv-tile sv-03-main"
-        style={{
-          backgroundImage: `url(${servicePhotos.usadas.principal})`,
-          backgroundPosition: 'center 40%',
-        }}
-      >
-      </div>
-      <div className="sv-03-strip">
+    <div className="sv sv-03" aria-label="Catálogo de prensas usadas en stock">
+      {/* Foto principal vertical destacada */}
+      <div className="sv-03-hero-wrap">
         <div
-          className="sv-tile"
+          className="sv-tile sv-03-hero"
           style={{
-            backgroundImage: `url(${servicePhotos.usadas.stockVerde})`,
-            backgroundPosition: 'center 35%',
+            backgroundImage: `url(${currentPhoto.src})`,
+            backgroundPosition: 'center 40%',
           }}
         >
+          {/* Overlay sutil */}
+          <div className="sv-03-hero-overlay" />
+
+          {/* Información inferior de la unidad + Acción sobria acorde a la web */}
+          <div className="sv-03-hero-caption">
+            <span className="sv-03-caption-id">UNIDAD {currentPhoto.id} / 05</span>
+            <strong className="sv-03-caption-title">{currentPhoto.title}</strong>
+
+            <a
+              href={waUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="sv-03-ask-btn"
+              title={`Consultar por ${currentPhoto.title}`}
+            >
+              <span>Consultar por esta unidad</span>
+              <ArrowUpRight className="size-3.5" />
+            </a>
+          </div>
+
+          {/* Flechas de navegación en el hero */}
+          <button
+            type="button"
+            className="sv-03-nav-btn sv-03-nav-prev"
+            onClick={prevPhoto}
+            aria-label="Prensa anterior"
+          >
+            <ChevronLeft className="size-4" />
+          </button>
+          <button
+            type="button"
+            className="sv-03-nav-btn sv-03-nav-next"
+            onClick={nextPhoto}
+            aria-label="Prensa siguiente"
+          >
+            <ChevronRight className="size-4" />
+          </button>
         </div>
-        <div
-          className="sv-tile"
-          style={{
-            backgroundImage: `url(${servicePhotos.usadas.reacondicionadaDomarco})`,
-            backgroundPosition: 'center 35%',
-          }}
-        >
-          <span className="sv-chip sv-chip-sm">Garantía DOMARCO</span>
+      </div>
+
+      {/* Columna lateral de las 5 miniaturas verticales */}
+      <div className="sv-03-thumbs-col" role="tablist" aria-label="Seleccionar prensa usada">
+        <div className="sv-03-thumbs-header">
+          <span>CATÁLOGO</span>
+        </div>
+        <div className="sv-03-thumbs-list">
+          {photos.map((photo, index) => {
+            const isActive = index === selectedIndex
+            return (
+              <button
+                key={photo.id}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                className={`sv-03-thumb-item ${isActive ? 'is-active' : ''}`}
+                onClick={() => setSelectedIndex(index)}
+                title={`Ver foto de ${photo.title}`}
+              >
+                <div
+                  className="sv-03-thumb-img"
+                  style={{
+                    backgroundImage: `url(${photo.src})`,
+                    backgroundPosition: 'center',
+                  }}
+                />
+                <div className="sv-03-thumb-info">
+                  <span className="sv-03-thumb-no">0{index + 1}</span>
+                  <span className="sv-03-thumb-title">{photo.title}</span>
+                </div>
+                {isActive && <span className="sv-03-thumb-indicator" aria-hidden="true" />}
+              </button>
+            )
+          })}
         </div>
       </div>
     </div>
@@ -320,13 +401,38 @@ const visualByNo: Record<string, React.ReactNode> = {
 }
 
 function ServicePanel({ service }: { service: Service }) {
+  if (service.no === '03') {
+    return (
+      <article id={`service-${service.no}`} className={`service-feature service-feature-${service.no} service-feature-usadas`}>
+        <div className="service-feature-copy">
+          <div className="service-feature-meta">
+            <span>{service.no}</span>
+            <span>{service.label}</span>
+          </div>
+          <h3>{service.title}</h3>
+          <div className="service-feature-underline" />
+          <p className="detail-copy">
+            Contamos con prensas usadas reacondicionadas disponibles para la venta, revisadas para volver a integrarse a una operación industrial.
+          </p>
+          <p className="service-types">{service.types}</p>
+          <a href="#contacto" className="service-link" aria-label={`Consultar por ${service.title}`}>
+            <ArrowUpRight className="size-5" /> Consultar servicio
+          </a>
+        </div>
+        <div className="service-feature-visual service-feature-visual-usadas">
+          {visualByNo[service.no]}
+        </div>
+      </article>
+    )
+  }
+
   if (service.no === '05') {
     return (
       <article id={`service-${service.no}`} className={`service-feature service-feature-${service.no} service-feature-mangueras`}>
         <div className="service-feature-copy">
           <div className="service-feature-meta">
             <span>{service.no}</span>
-            <span>ARMADO DE MANGUERAS & ACCESORIOS</span>
+            <span>VENTA DE ABROCHADORAS, MANGUERAS Y ACCESORIOS</span>
           </div>
           <h3>{service.title}</h3>
           <div className="service-feature-underline" />

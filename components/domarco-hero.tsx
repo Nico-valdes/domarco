@@ -15,9 +15,9 @@ export function DomarcoHero({ onSelectService }: DomarcoHeroProps) {
           <div className="hero-heading-copy">
             <div className="hero-brand-line">
               <span className="hero-brand-line-mark" />
-              <span>DOMARCO / FABRICACIÓN Y REACONDICIONAMIENTO DESDE 1964</span>
+              <span>DOMARCO / INDUSTRIA NACIONAL DESDE 1964</span>
             </div>
-            <p className="blue-kicker">DOMARCO / PRENSAS HIDRÁULICAS INDUSTRIALES</p>
+            <p className="blue-kicker">FABRICACIÓN · REACONDICIONAMIENTO · SERVICIO TÉCNICO</p>
             <h1 className="hero-cards-title">
               <span className="hero-title-line">Prensas hidráulicas</span>
               <span className="hero-title-line hero-title-accent">industriales a medida.</span>
