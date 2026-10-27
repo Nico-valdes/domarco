@@ -167,7 +167,7 @@ function Visual02() {
   )
 }
 
-// ─── 03 VENTA DE PRENSAS USADAS ── Galería vertical de 5 unidades en stock
+// ─── 03 VENTA DE PRENSAS USADAS ── Galería vertical de unidades en stock
 function Visual03() {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const photos = servicePhotos.usadas.items
@@ -201,7 +201,9 @@ function Visual03() {
 
           {/* Información inferior de la unidad + Acción sobria acorde a la web */}
           <div className="sv-03-hero-caption">
-            <span className="sv-03-caption-id">UNIDAD {currentPhoto.id} / 05</span>
+            <span className="sv-03-caption-id">
+              UNIDAD {currentPhoto.id} / {String(photos.length).padStart(2, '0')}
+            </span>
             <strong className="sv-03-caption-title">{currentPhoto.title}</strong>
 
             <a
@@ -236,7 +238,7 @@ function Visual03() {
         </div>
       </div>
 
-      {/* Columna lateral de las 5 miniaturas verticales */}
+      {/* Columna lateral de miniaturas verticales */}
       <div className="sv-03-thumbs-col" role="tablist" aria-label="Seleccionar prensa usada">
         <div className="sv-03-thumbs-header">
           <span>CATÁLOGO</span>
